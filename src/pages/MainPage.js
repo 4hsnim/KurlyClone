@@ -1,18 +1,133 @@
 import React from 'react';
 import styled from 'styled-components';
+import SimpleImageSlider from 'react-simple-image-slider';
+import Carousel from 'react-grid-carousel';
+
 
 const MainPage = () => {
+   const bannerImg = [
+      {
+         url: 'https://img-cf.kurly.com/banner/main/pc/img/5a5ecfbd-6615-4593-955f-2725c82134d7',
+      },
+      {
+         url: 'https://img-cf.kurly.com/banner/main/pc/img/c02c5036-df56-4cc8-b2b7-6e997e644008',
+      },
+      {
+         url: 'https://img-cf.kurly.com/banner/main/pc/img/bb14e79a-a0ff-4e5e-83a2-a1c06c48d4ae',
+      },
+      {
+         url: 'https://img-cf.kurly.com/banner/main/pc/img/2a6fa583-ef3d-48a5-a07f-593be0adc1b2',
+      },
+      {
+         url: 'https://img-cf.kurly.com/banner/main/pc/img/b3bd843e-c377-41f9-a054-dea26be0bb7a',
+      },
+      {
+         url: 'https://img-cf.kurly.com/banner/main/pc/img/39c28de9-2a7f-43bc-9e41-648befae3c95',
+      },
+      {
+         url: 'https://img-cf.kurly.com/banner/main/pc/img/cc9e301f-bf05-42ca-889b-8d6d0777be4b',
+      },
+   ];
+   
+
+   const Array = [
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg',
+      },
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1485857289116l0.jpg',
+      },
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1488949996597l0.jpg',
+      },
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg',
+      },
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg',
+      },
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
+      },
+
+   ]; 
+
    return (
       <>
-         <div>
-            <SlideImg />
-         </div>
+         <Container>
+            <SimpleImageSlider
+               width={'100%'}
+               height={370}
+               images={bannerImg}
+               showBullets={true}
+               showNavs={true}
+               dot={false}
+               speed={500}
+            />
+         </Container>
+
+         <CarouselBox>
+            <CarouselTitle>이 상품 어때요?</CarouselTitle>
+            <Carousel rows={1} cols={4} gap={0}>
+               {Array.map((val, i) => {
+                  return (
+                     <Carousel.Item key={i}>
+                        <div
+                           style={{
+                              margin: '0 10px',
+                              background: '#ff000040',
+                              textAlign: 'center',
+                              lineHeight: '200px',
+                           }}
+                        >
+                           {i}
+                        </div>
+                     </Carousel.Item>
+                  );
+               })}
+            </Carousel>
+
+        <Img src='https://img-cf.kurly.com/banner/random-band/pc/img/9a8968a6-bce6-498a-b2ad-35199762ff1c' />
+         </CarouselBox>
       </>
    );
 };
-
-const SlideImg = styled.img`
-   background-image: url('https://img-cf.kurly.com/banner/main/pc/img/96d199a4-ce14-43c5-9471-8c816ccd8b64');
+const Container = styled.div`
+   position: relative;
+   bottom: 30px;
+   margin: 40px;
 `;
 
+const CarouselBox = styled.div`
+   display: block;
+   width: 80%;
+   margin: 20px auto;
+   padding: 0;
+`;
+
+const CarouselTitle = styled.h2`
+   font-size: 28px;
+   display: flex;
+   justify-content: center;
+   margin: auto;
+   padding: 10px;
+`;
+
+const Img = styled.img`
+   position: relative;
+   top: 30px;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+`;
+
+const Btn = styled.button`
+    background: #0000004e;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    padding: 8px 12px;
+
+`;
 export default MainPage;
