@@ -1,13 +1,23 @@
-import React from "react";
+import React from 'react';
+import styled from 'styled-components';
 
-function SignUp() {
+const SignUpPage = () => {
+   return (
+      <>
+         {/* <SignUp> */}
+            <BtnSignUpTxt>가입하기</BtnSignUpTxt>
+         {/* </SignUp> */}
+      </>
+   );
+};
 
-    return(
-        <>
-            <h1>테스트해보자!</h1>
-        </>
-    ) 
-    
-}
+const BtnSignUpTxt = styled.span`
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   letter-spacing: -0.6px;
+   font-size: 15px;
+   color: #5f0080;
+`;
 
-export default SignUp
+export default SignUpPage;
