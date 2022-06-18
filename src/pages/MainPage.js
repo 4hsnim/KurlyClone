@@ -1,13 +1,18 @@
-import React from "react"
+import React from 'react';
+import styled from 'styled-components';
 
-function Main () {
+const MainPage = () => {
+   return (
+      <>
+         <div>
+            <SlideImg />
+         </div>
+      </>
+   );
+};
 
-    return(
-        <>
-            <h1>테스트해보자!</h1>
-        </>
-        
-    )
-}
+const SlideImg = styled.img`
+   background-image: url('https://img-cf.kurly.com/banner/main/pc/img/96d199a4-ce14-43c5-9471-8c816ccd8b64');
+`;
 
-export default Main
+export default MainPage;
