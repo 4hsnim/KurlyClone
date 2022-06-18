@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+
+/*COMPONENTS*/
+import HoverList from './HoverList';
+/*ICONS*/
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-   // faCartPlus,
-   // faLocationDot,
+import { // faCartPlus, faLocationDot,farBars,
    faHeart,
-   farBars,
 } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
@@ -43,7 +44,10 @@ const Header = () => {
                   src="https://res.kurly.com/kurly/ico/2021/new_badge_28_28.png"
                   alt=""/>
             </span> */}
-               <Menu>고객센터 &nbsp;</Menu>
+               <Menu>
+                  고객센터
+                  <HoverList /> &nbsp;
+               </Menu>
                <Menu onClick={goLogin}>로그인 &nbsp; |</Menu>
                <Menu onClick={goSignUp}>회원가입 &nbsp; |</Menu>
             </UserMenu>
@@ -157,7 +161,7 @@ const Logo = styled.img`
    width: 103px;
 `;
 
-const CategoryBox = styled.div`
+const CategoryBox = styled.ul`
    display: flex;
    min-width: 1050px;
    justify-content: center;
