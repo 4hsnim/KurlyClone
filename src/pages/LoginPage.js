@@ -1,7 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import {loginDB} from "../redux/modules/user";
 
 const LoginPage = () => {
+   const dispatch = useDispatch()
+   const navigate = useNavigate();
+   const [id, SetId] = useState("");
+   const [password, SetPassword] = useState("");
+
+   const OnChangeId = (e) => {
+      SetId(e.target.value)
+   }
+
+   const OnChangePassword = (e) => {
+      SetPassword(e.target.value)
+   }
+
+   let formData = {
+      loginId: id,
+      password: password,
+    };
+
+    function login() {
+      dispatch(loginDB(formData));
+      navigate("/");
+    }
+   
+
+
    return (
       <>
          <Container>
@@ -9,12 +39,14 @@ const LoginPage = () => {
             <Card>
                <Form>
                   <Input
+                     onChange={OnChangeId}
                      type="text"
                      placeholder="아이디를 입력해주세요."
                      spellcheck="false"
                      data-ms-editor="true"
                   />
                   <Input
+                     onChange={OnChangePassword}
                      type="password"
                      placeholder="비밀번호를 입력해주세요."
                   />
@@ -24,7 +56,7 @@ const LoginPage = () => {
                   <span class="bar"></span>
                   <Link>| &nbsp;비밀번호 찾기</Link>
                </LinkCard>
-               <LoginBtn>
+               <LoginBtn onClick={login}>
                   <BtnLoginTxt>로그인</BtnLoginTxt>
                </LoginBtn>
                <SignUp>

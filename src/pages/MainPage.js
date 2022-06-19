@@ -89,7 +89,6 @@ const MainPage = () => {
                   {Array.map((val, i) => {
                      return (
                         <Carousel.Item key={i}>
- 
                               <CartBtn
                                  src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/cart_white_45_45.svg"
                                  alt="상품 카트에 담기 아이콘"
@@ -109,7 +108,6 @@ const MainPage = () => {
                      );
                   })}
                </Carousel>
-
                <Img src="https://img-cf.kurly.com/banner/random-band/pc/img/9a8968a6-bce6-498a-b2ad-35199762ff1c" />
             </CarouselBox>
 

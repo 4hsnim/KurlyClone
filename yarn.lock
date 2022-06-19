@@ -3065,13 +3065,6 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001335, caniuse-lite@^1.0.30001349:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001355.tgz#e240b7177443ed0198c737a7f609536976701c77"
   integrity sha512-Sd6pjJHF27LzCB7pT7qs+kuX2ndurzCzkpJl6Qct7LPSZ9jn0bkOA8mdgMgmqnQAWLVOOGjLpc+66V57eLtb1g==
 
-carousel-react-rcdev@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/carousel-react-rcdev/-/carousel-react-rcdev-0.0.4.tgz#8c3c813d728ca477f3ad781a9756346fcea182d1"
-  integrity sha512-xy5HOU1waVyThJbWSO+4A5PhR7m3/D2ynSbaF+98ToWP7o2e+VnUx45F1d0UPdIn6GEeRq/DvLAM8TgRPeV4mA==
-  dependencies:
-    styled-components "^5.3.5"
-
 case-sensitive-paths-webpack-plugin@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.4.0.tgz#db64066c6422eed2e08cc14b986ca43796dbc6d4"
