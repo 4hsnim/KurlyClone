@@ -13,7 +13,8 @@ import ReviewWritePage from "../pages/ReviewWritePage"
 //컴포넌트 import
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-
+/*Global CSS*/
+import './App.css';
 
 function App() {
   return (
