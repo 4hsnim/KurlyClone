@@ -1,17 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate} from 'react-router-dom';
+/*COMPONENTS*/
 import SignUp from '../components/signup/SignUp';
 
+
 const SignUpPage = () => {
+   const navigate = useNavigate();
+
+   const ClickSignUp = () => {
+      window.alert('가입을 축하합니다.');
+      navigate('/');
+   }
+
    return (
       <>
-
          <Container>
             <Caption>회원가입</Caption>
 
             <Table>
-
-
                <tr>
                   <Title>아이디</Title>
                   <Sub>
@@ -83,14 +90,13 @@ const SignUpPage = () => {
                <tr>
                   <td></td>
                   <BtnContainer>
-                     <BtnSignUp>
+                     <BtnSignUp onClick={ClickSignUp}>
                         <BtnSignTxt>가입하기</BtnSignTxt>
                      </BtnSignUp>
                   </BtnContainer>
                </tr>
             </Table>
          </Container>
-
       </>
    );
 };
@@ -118,6 +124,8 @@ const Title = styled.td`
    display: block;
    width: 130px;
    height: 60px;
+   position: relative;
+   top: 15px;
    font-weight: 500;
    font-size: 15px;
 `;
@@ -125,7 +133,7 @@ const Sub = styled.td`
    width: 150px;
    height: 60px;
    position: relative;
-   left: 10px;
+   left: 5px;
    padding: 10px auto;
 `
 
@@ -186,7 +194,7 @@ const BtnTitle = styled.p`
 const BtnContainer = styled.td`
    position: relative;
    top: 50px;
-   left: 12px;
+   left: 7px;
 `
 const BtnSignUp = styled.button`
    display: block;
