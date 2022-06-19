@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+
+/*COMPONENTS*/
+import HoverList from './HoverList';
+/*ICONS*/
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-   // faCartPlus,
-   // faLocationDot,
+import { // faCartPlus, faLocationDot,farBars,
    faHeart,
-   farBars,
 } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,34 +22,37 @@ const Header = () => {
    };
 
    const goSignUp = () => {
-      navigate('/SignUp');
+      navigate('/register');
    };
 
    return (
       <>
          <Container>
-            <UserMenu>
-               <img
-                  style={{ cursor: 'pointer', float: 'left' }}
-                  src="https://res.kurly.com/pc/service/common/2011/delivery_210801.png"
-                  width="121px"
-                  height="22px"
-                  margin="10px"
-                  alt="서울, 경기, 인천 샛별배송, 수도권 이외 지역 택배배송"
-                  onClick={goMain}
-               />
-               {/* <span>
+            <Box>
+               <UserMenu>
+                  <img
+                     style={{ cursor: 'pointer', float: 'left' }}
+                     src="https://res.kurly.com/pc/service/common/2011/delivery_210801.png"
+                     width="121px"
+                     height="22px"
+                     margin="10px"
+                     alt="서울, 경기, 인천 샛별배송, 수도권 이외 지역 택배배송"
+                     onClick={goMain}
+                  />
+                  {/* <span>
                어서오세요. 누구님    
                <ImgN
                   src="https://res.kurly.com/kurly/ico/2021/new_badge_28_28.png"
                   alt=""/>
             </span> */}
-               <Menu>고객센터 &nbsp;</Menu>
-               <Menu onClick={goLogin}>로그인 &nbsp; |</Menu>
-               <Menu onClick={goSignUp}>회원가입 &nbsp; |</Menu>
-            </UserMenu>
+                  <Menu>
+                     고객센터
+                     <HoverList /> &nbsp;
+                  </Menu>
+                  <Menu onClick={goLogin}>로그인 &nbsp; |</Menu>
+                  <Menu onClick={goSignUp}>회원가입 &nbsp; |</Menu>
+               </UserMenu>
 
-            <Box>
                <HeaderLogo>
                   <Logo
                      style={{ cursor: 'pointer' }}
@@ -130,7 +134,16 @@ const Container = styled.div`
       0 3px 10px -10px hsla(0, 0%, 0%, 0.3),
       0 -6px 10px -10px hsla(0, 0%, 0%, 0.03);
 `;
-const Box = styled.div``;
+const Box = styled.div`
+   background: #fff;
+   min-height: 30px;
+   display: block;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   margin: 0 auto;
+   z-index: 1;
+`;
 
 const UserMenu = styled.div`
    margin: 10px;
@@ -157,7 +170,7 @@ const Logo = styled.img`
    width: 103px;
 `;
 
-const CategoryBox = styled.div`
+const CategoryBox = styled.ul`
    display: flex;
    min-width: 1050px;
    justify-content: center;
