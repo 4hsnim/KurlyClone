@@ -24,6 +24,11 @@ const Header = () => {
       navigate('/register');
    };
 
+   const goCart = () => {
+      navigate('/cart');
+
+   }
+
    return (
       <>
          <Container>
@@ -113,7 +118,7 @@ const Header = () => {
                      />
                      <BsCart2
                         style={{ marginLeft: 15, width: 36, height: 36 }}
-                     />
+                     onClick={goCart}/>
                   </IconContainer>
                </CategoryBox>
             </Box>
