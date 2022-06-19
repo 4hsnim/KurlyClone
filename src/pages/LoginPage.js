@@ -5,7 +5,7 @@ const LoginPage = () => {
    return (
       <>
          <Container>
-            <h3>로그인</h3>
+              <Caption>로그인</Caption>
             <Card>
                <Form>
                   <Input
@@ -33,12 +33,14 @@ const LoginPage = () => {
             </Card>
          </Container>
       </>
-   );
+   ); 
 };
 const Container = styled.div`
    display: block;
+   margin: 16em;
    text-align: center;
-   margin-top: 10em;
+   position: relative;
+   top: 40px;
 `;
 
 const Card = styled.div`
@@ -55,6 +57,14 @@ const Form = styled.form`
    margin: 0;
    padding: 0;
 `;
+
+const Caption = styled.h3`
+   margin: 2em;
+   text-align: center;
+   color: #333;
+   font-size: 28px;
+`;
+
 const Input = styled.input`
    width: 340px;
    height: 54px;
@@ -94,7 +104,7 @@ const SignUp = styled.button`
    text-align: center;
    border: 1px solid #5f0081;
    background-color: #fff;
-}
+
 `;
 const BtnLoginTxt = styled.span`
    box-sizing: border-box;
