@@ -138,7 +138,8 @@ const Input = styled.input`
 
 const SubTxt = styled.p`
    position: relative;
-   bottom: 7px;
+   bottom: 5px;
+   font-size: 13px;
 
 `;
 
@@ -178,7 +179,7 @@ const BtnTitle = styled.p`
 const BtnContainer = styled.td`
    position: relative;
    top: 50px;
-   left: 13px;
+   left: 12px;
 `
 const BtnSignUp = styled.button`
    display: block;
