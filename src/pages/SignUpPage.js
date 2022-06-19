@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import SignUp from '../components/signup/SignUp';
 
 const SignUpPage = () => {
@@ -94,6 +95,7 @@ const SignUpPage = () => {
    );
 };
 const Container = styled.div`
+   display: block;
    margin: 16em;
    position: relative;
    top: 40px;
@@ -105,6 +107,7 @@ const Table = styled.table`
 `;
 
 const Caption = styled.h3`
+   display: block;
    margin: 2em;
    text-align: center;
    color: #333;
@@ -112,6 +115,7 @@ const Caption = styled.h3`
 `;
 
 const Title = styled.td`
+   display: block;
    width: 130px;
    height: 60px;
    font-weight: 500;
