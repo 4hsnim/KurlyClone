@@ -1,0 +1,16 @@
+{
+    "list" : [
+        {   "Id" : 1,
+            "loginId" : "loginId",
+            "password" : "password",
+            "nickname": "nickname",
+            "address": "address"
+            },
+        {   "Id" : 2,
+            "loginId" : "loginId2",
+            "password" : "password",
+            "nickname": "nickname",
+            "address": "address"
+        }
+    ]
+}

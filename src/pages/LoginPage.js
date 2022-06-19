@@ -104,7 +104,7 @@ const SignUp = styled.button`
    text-align: center;
    border: 1px solid #5f0081;
    background-color: #fff;
-}
+
 `;
 const BtnLoginTxt = styled.span`
    box-sizing: border-box;

@@ -1,9 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import SignUp from '../components/signup/SignUp';
 
 const SignUpPage = () => {
    return (
       <>
+
          <Container>
             <Caption>회원가입</Caption>
 
@@ -88,6 +89,7 @@ const SignUpPage = () => {
                </tr>
             </Table>
          </Container>
+
       </>
    );
 };
@@ -135,6 +137,7 @@ const Input = styled.input`
    line-height: 20px;
    outline: none;
 `;
+
 
 const SubTxt = styled.p`
    position: relative;
@@ -202,5 +205,6 @@ const BtnSignTxt = styled.span`
    font-size: 15px;
    color: #fff;
 `;
+
 
 export default SignUpPage;
