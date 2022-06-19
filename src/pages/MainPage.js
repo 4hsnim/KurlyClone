@@ -49,12 +49,29 @@ const MainPage = () => {
       {
          url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
       },
-
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg',
+      },
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg',
+      },
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
+      },
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg',
+      },
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg',
+      },
+      {
+         url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
+      },
    ]; 
 
    return (
       <>
-         <Container>
+         <Section>
             <SimpleImageSlider
                width={'100%'}
                height={370}
@@ -63,30 +80,34 @@ const MainPage = () => {
                showNavs={true}
                speed={500}
             />
-         </Container>
+         </Section>
 
-         <Container2>
+         <Section2>
             <CarouselBox>
                <CarouselTitle>이 상품 어때요?</CarouselTitle>
                <Carousel rows={1} cols={4} gap={1}>
                   {Array.map((val, i) => {
                      return (
                         <Carousel.Item key={i}>
-                           <Img
-                              src={val.url}
-                              style={{
-                                 margin: '0 10px',
-                                 background: '#ff000040',
-                                 textAlign: 'center',
-                                 lineHeight: '200px',
-                                 width: '239px',
-                                 height: '320px',
-                              }}
-                           />
+ 
+                              <CartBtn
+                                 src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/cart_white_45_45.svg"
+                                 alt="상품 카트에 담기 아이콘"
+                              />
+                              <ProductImg
+                                 src={val.url}
+                                 style={{
+                                    margin: '0 10px',
+                                    background: '#ff000040',
+                                    textAlign: 'center',
+                                    lineHeight: '200px',
+                                    width: '239px',
+                                    height: '320px',
+                                 }}
+                              />
                         </Carousel.Item>
                      );
                   })}
-                  <p>상품</p>
                </Carousel>
 
                <Img src="https://img-cf.kurly.com/banner/random-band/pc/img/9a8968a6-bce6-498a-b2ad-35199762ff1c" />
@@ -94,14 +115,17 @@ const MainPage = () => {
 
             <CarouselBox>
                <CarouselTitle>놓치면 후회할 가격</CarouselTitle>
-               <Carousel rows={1} cols={4} gap={1}>
+               <Carousel rows={1} cols={4} gap={1} style={{ position: 'relative', }}>
                   {Array.map((val, i) => {
                      return (
                         <Carousel.Item key={i}>
-                           <Img
+                           <CartBtn
+                              src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/cart_white_45_45.svg"
+                              alt="상품 카트에 담기 아이콘"
+                           />
+                           <ProductImg
                               src={val.url}
                               style={{
-                                 display: 'block-inline',
                                  margin: '0 10px',
                                  background: '#ff000040',
                                  textAlign: 'center',
@@ -110,57 +134,61 @@ const MainPage = () => {
                                  height: '320px',
                               }}
                            />
-                           <span type="prev"></span>
+                           {/* <span type="prev"></span> */}
                         </Carousel.Item>
                      );
                   })}
                </Carousel>
             </CarouselBox>
-         </Container2>
+         </Section2>
       </>
    );
 };
-const Container = styled.div`
+
+
+
+const Section = styled.div`
    position: relative;
    top: 120px;
    margin: 50px auto;
 `;
 
-const Container2 = styled.div`
+const Section2 = styled.div`
    position: relative;
-   top: 120px;
-   margin: 40px auto;
+   top: 100px;
+   margin: 100px auto;
 `;
 const CarouselBox = styled.div`
-   display: block;
-   width: 70%;
+   width: 1090px;
    position: relative;
-   bottom: 10px;
-   margin: auto;
-   padding: 0;
+   margin: 50px auto;
 `;
 
 const CarouselTitle = styled.h2`
-   font-size: 28px;
+   font-size: 30px;
    display: flex;
    justify-content: center;
+   position: relative;
+   top: 20px;
    margin: auto;
    padding: 10px;
 `;
 
-const Img = styled.img`
+const ProductImg = styled.img`
    position: relative;
    top: 30px;
+   margin: 100px auto;
    width: 100%;
    height: 100%;
    object-fit: cover;
+   z-index: 2;
+`;
+const Img = styled.img`
+   width: 1090px;
+   margin: 100px auto;
+   z-index: 2;
 `;
 
-
-const CarouselBox2 = styled.div`
-
-
-`
 const Btn = styled.button`
     background: #0000004e;
     width: 40px;
@@ -170,4 +198,12 @@ const Btn = styled.button`
     padding: 8px 12px;
 
 `;
+
+const CartBtn = styled.img`
+   position: relative;
+   left: 195px;
+   top: 310px;
+   z-index: 3;
+
+`
 export default MainPage;
