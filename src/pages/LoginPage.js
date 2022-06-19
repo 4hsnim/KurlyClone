@@ -39,6 +39,8 @@ const Container = styled.div`
    display: block;
    text-align: center;
    margin-top: 10em;
+   position: relative;
+   top: 40px;
 `;
 
 const Card = styled.div`

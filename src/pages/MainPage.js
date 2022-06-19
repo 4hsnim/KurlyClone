@@ -61,47 +61,82 @@ const MainPage = () => {
                images={bannerImg}
                showBullets={true}
                showNavs={true}
-               dot={false}
                speed={500}
             />
          </Container>
 
-         <CarouselBox>
-            <CarouselTitle>이 상품 어때요?</CarouselTitle>
-            <Carousel rows={1} cols={4} gap={0}>
-               {Array.map((val, i) => {
-                  return (
-                     <Carousel.Item key={i}>
-                        <div
-                           style={{
-                              margin: '0 10px',
-                              background: '#ff000040',
-                              textAlign: 'center',
-                              lineHeight: '200px',
-                           }}
-                        >
-                           {i}
-                        </div>
-                     </Carousel.Item>
-                  );
-               })}
-            </Carousel>
+         <Container2>
+            <CarouselBox>
+               <CarouselTitle>이 상품 어때요?</CarouselTitle>
+               <Carousel rows={1} cols={4} gap={1}>
+                  {Array.map((val, i) => {
+                     return (
+                        <Carousel.Item key={i}>
+                           <Img
+                              src={val.url}
+                              style={{
+                                 margin: '0 10px',
+                                 background: '#ff000040',
+                                 textAlign: 'center',
+                                 lineHeight: '200px',
+                                 width: '239px',
+                                 height: '320px',
+                              }}
+                           />
+                        </Carousel.Item>
+                     );
+                  })}
+                  <p>상품</p>
+               </Carousel>
 
-        <Img src='https://img-cf.kurly.com/banner/random-band/pc/img/9a8968a6-bce6-498a-b2ad-35199762ff1c' />
-         </CarouselBox>
+               <Img src="https://img-cf.kurly.com/banner/random-band/pc/img/9a8968a6-bce6-498a-b2ad-35199762ff1c" />
+            </CarouselBox>
+
+            <CarouselBox>
+               <CarouselTitle>놓치면 후회할 가격</CarouselTitle>
+               <Carousel rows={1} cols={4} gap={1}>
+                  {Array.map((val, i) => {
+                     return (
+                        <Carousel.Item key={i}>
+                           <Img
+                              src={val.url}
+                              style={{
+                                 display: 'block-inline',
+                                 margin: '0 10px',
+                                 background: '#ff000040',
+                                 textAlign: 'center',
+                                 lineHeight: '200px',
+                                 width: '239px',
+                                 height: '320px',
+                              }}
+                           />
+                           <span type="prev"></span>
+                        </Carousel.Item>
+                     );
+                  })}
+               </Carousel>
+            </CarouselBox>
+         </Container2>
       </>
    );
 };
 const Container = styled.div`
    position: relative;
-   bottom: 30px;
-   margin: 40px;
+   top: 120px;
+   margin: 50px auto;
 `;
 
+const Container2 = styled.div`
+   position: relative;
+   top: 120px;
+   margin: 40px auto;
+`;
 const CarouselBox = styled.div`
    display: block;
-   width: 80%;
-   margin: 20px auto;
+   width: 70%;
+   position: relative;
+   bottom: 10px;
+   margin: auto;
    padding: 0;
 `;
 
@@ -121,6 +156,11 @@ const Img = styled.img`
    object-fit: cover;
 `;
 
+
+const CarouselBox2 = styled.div`
+
+
+`
 const Btn = styled.button`
     background: #0000004e;
     width: 40px;

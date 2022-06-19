@@ -22,7 +22,7 @@ const Header = () => {
    };
 
    const goSignUp = () => {
-      navigate('/SignUp');
+      navigate('/register');
    };
 
    return (
