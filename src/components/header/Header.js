@@ -6,10 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import HoverList from './HoverList';
 /*ICONS*/
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { // faCartPlus, faLocationDot,farBars,
-   faHeart,
-} from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { BsCart2, BsHeart } from 'react-icons/bs';
 
 const Header = () => {
    const navigate = useNavigate();
@@ -24,6 +23,11 @@ const Header = () => {
    const goSignUp = () => {
       navigate('/register');
    };
+
+   const goCart = () => {
+      navigate('/cart');
+
+   }
 
    return (
       <>
@@ -92,33 +96,29 @@ const Header = () => {
                         />
                      </div>
 
-                     <Icons>
-                        {/* <FontAwesomeIcon icon={faCartPlus} style={{
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              position: 'relative',
-                              top: '5px',
-                              fontSize: '20px',
-                           }}/>
-                           <FontAwesomeIcon icon={faLocationDot} style={{
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              position: 'relative',
-                              top: '5px',
-                              fontSize: '20px',
-                           }}/> */}
-
-                        <FontAwesomeIcon
-                           icon={faHeart}
-                           style={{
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              position: 'relative',
-                              top: '5px',
-                              fontSize: '20px',
-                           }}
-                        />
-                     </Icons>
+                     <HiOutlineLocationMarker
+                        style={{
+                           marginLeft: 15,
+                           marginRight: 15,
+                           width: 36,
+                           height: 39,
+                           fontWeight: 100
+                        }}
+                     />
+                     <BsHeart
+                        style={{
+                           marginLeft: 15,
+                           marginRight: 15,
+                           width: 35,
+                           height: 34,
+                           display: 'flex',
+                           position: 'relative',
+                           top: 3
+                        }}
+                     />
+                     <BsCart2
+                        style={{ marginLeft: 15, width: 36, height: 36 }}
+                     onClick={goCart}/>
                   </IconContainer>
                </CategoryBox>
             </Box>
@@ -212,6 +212,7 @@ const Input = styled.input`
    line-height: 15px;
    outline: none;
    -webkit-font-smoothing: antialiased;
+
 `;
 
 const IconContainer = styled.div`

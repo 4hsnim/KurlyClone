@@ -1,11 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useNavigate} from 'react-router-dom';
 
 const LoginPage = () => {
+   const navigate = useNavigate();
+
+   const ClickLogin = () => {
+      window.alert('로그인 되었습니다.');
+      navigate('/');
+   };
+   const ClickSignUp = () => {
+      navigate('/register');
+   };
+
    return (
       <>
          <Container>
-              <Caption>로그인</Caption>
+            <Caption>로그인</Caption>
             <Card>
                <Form>
                   <Input
@@ -25,11 +36,11 @@ const LoginPage = () => {
                   <Link>| &nbsp;비밀번호 찾기</Link>
                </LinkCard>
                <LoginBtn>
-                  <BtnLoginTxt>로그인</BtnLoginTxt>
+                  <BtnLoginTxt onClick={ClickLogin}>로그인</BtnLoginTxt>
                </LoginBtn>
-               <SignUp>
+               <SignUpBtn onClick={ClickSignUp}>
                   <BtnSignUpTxt>회원가입</BtnSignUpTxt>
-               </SignUp>
+               </SignUpBtn>
             </Card>
          </Container>
       </>
@@ -95,7 +106,7 @@ const LoginBtn = styled.button`
    background-color: #5f0080;
 `;
 
-const SignUp = styled.button`
+const SignUpBtn = styled.button`
    display: block;
    overflow: hidden;
    width: 100%;
@@ -104,7 +115,6 @@ const SignUp = styled.button`
    text-align: center;
    border: 1px solid #5f0081;
    background-color: #fff;
-
 `;
 const BtnLoginTxt = styled.span`
    box-sizing: border-box;
