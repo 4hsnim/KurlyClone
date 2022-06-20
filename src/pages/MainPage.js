@@ -3,8 +3,31 @@ import styled from 'styled-components';
 import SimpleImageSlider from 'react-simple-image-slider';
 import Carousel from 'react-grid-carousel';
 
+import {getPosts, loadProductDB} from '../redux/modules/post'
+import { useDispatch, useSelector } from 'react-redux';
+import  {getposts} from '../redux/modules/post'
+
+
 
 const MainPage = () => {
+   
+   const dispatch = useDispatch()
+   // const product_list = useSelector((state)=> state.post)
+   const [FirstLoad, setFirstLoad] = React.useState(true);
+   // console.log(product_list)
+   // React.useEffect( () => {
+
+   //       dispatch(loadProductDB())
+
+      
+   // },[])
+   const product_list = useSelector((state)=> state.post.posts)
+   React.useEffect (() => {
+      dispatch(getPosts())
+   },[])
+   console.log(product_list)
+
+
    const bannerImg = [
       {
          url: 'https://img-cf.kurly.com/banner/main/pc/img/5a5ecfbd-6615-4593-955f-2725c82134d7',
@@ -35,7 +58,7 @@ const MainPage = () => {
          url: 'https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg',
       },
       {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1485857289116l0.jpg',
+         url: 'https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg',
       },
       {
          url: 'https://img-cf.kurly.com/shop/data/goods/1488949996597l0.jpg',
@@ -69,6 +92,15 @@ const MainPage = () => {
       },
    ]; 
 
+   const goCart = () => {
+      window.alert('상품이 추가되었습니다.')
+      navigate('/cart');
+   }
+
+   const goDetail = () => {
+      navigate('/Detail');
+
+   }
    return (
       <>
          <Section>
@@ -85,17 +117,18 @@ const MainPage = () => {
          <Section2>
             <CarouselBox>
                <CarouselTitle>이 상품 어때요?</CarouselTitle>
+
                <Carousel rows={1} cols={4} gap={1}>
-                  {Array.map((val, i) => {
+                  {product_list&&product_list.map((val, i) => {
                      return (
                         <Carousel.Item key={i}>
- 
                               <CartBtn
                                  src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/cart_white_45_45.svg"
                                  alt="상품 카트에 담기 아이콘"
                               />
                               <ProductImg
-                                 src={val.url}
+                                 src={val.imgUrl}
+
                                  style={{
                                     margin: '0 10px',
                                     background: '#ff000040',
@@ -105,17 +138,17 @@ const MainPage = () => {
                                     height: '320px',
                                  }}
                               />
+                           </ImgBox>
                         </Carousel.Item>
                      );
                   })}
                </Carousel>
-
                <Img src="https://img-cf.kurly.com/banner/random-band/pc/img/9a8968a6-bce6-498a-b2ad-35199762ff1c" />
             </CarouselBox>
 
             <CarouselBox>
                <CarouselTitle>놓치면 후회할 가격</CarouselTitle>
-               <Carousel rows={1} cols={4} gap={1} style={{ position: 'relative', }}>
+               <Carousel rows={1} cols={4} gap={1} style={{ position: 'relative' }}>
                   {Array.map((val, i) => {
                      return (
                         <Carousel.Item key={i}>
@@ -174,6 +207,12 @@ const CarouselTitle = styled.h2`
    padding: 10px;
 `;
 
+const ImgBox = styled.div`
+   overflow: hidden;
+   width: 100%;
+   height: 100%;
+`;
+
 const ProductImg = styled.img`
    position: relative;
    top: 30px;
@@ -182,7 +221,13 @@ const ProductImg = styled.img`
    height: 100%;
    object-fit: cover;
    z-index: 2;
+   transition: all 0.2s linear;
+   &:hover {
+      transform: scale(1.01);
+      animation-iteration-count: 1;
+   }
 `;
+
 const Img = styled.img`
    width: 1090px;
    margin: 100px auto;

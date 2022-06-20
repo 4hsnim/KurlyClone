@@ -1,13 +1,18 @@
+import { useSelector } from "react-redux";
 import { createStore, combineReducers,applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
-import post from "./modules/post"
+import postReducer from "./modules/post"
+import user from "./modules/user"
 
-const middlewares = [thunk]
-const rootReducer = combineReducers({post})
-const enhancer = applyMiddleware(...middlewares)
+import { configureStore } from "@reduxjs/toolkit";
 
 
-const store = createStore(rootReducer, enhancer)
+const store = configureStore({
+    reducer: {
+        post: postReducer
+    }
+})
 
 export default store
+
