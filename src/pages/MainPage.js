@@ -2,9 +2,30 @@ import React from 'react';
 import styled from 'styled-components';
 import SimpleImageSlider from 'react-simple-image-slider';
 import Carousel from 'react-grid-carousel';
+import {getPosts, loadProductDB} from '../redux/modules/post'
+import { useDispatch, useSelector } from 'react-redux';
+import  {getposts} from '../redux/modules/post'
+
 
 
 const MainPage = () => {
+   
+   const dispatch = useDispatch()
+   // const product_list = useSelector((state)=> state.post)
+   const [FirstLoad, setFirstLoad] = React.useState(true);
+   // console.log(product_list)
+   // React.useEffect( () => {
+
+   //       dispatch(loadProductDB())
+
+      
+   // },[])
+   const product_list = useSelector((state)=> state.post.posts)
+   React.useEffect (() => {
+      dispatch(getPosts())
+   },[])
+   console.log(product_list)
+
    const bannerImg = [
       {
          url: 'https://img-cf.kurly.com/banner/main/pc/img/5a5ecfbd-6615-4593-955f-2725c82134d7',
@@ -35,7 +56,7 @@ const MainPage = () => {
          url: 'https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg',
       },
       {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1485857289116l0.jpg',
+         url: 'https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg',
       },
       {
          url: 'https://img-cf.kurly.com/shop/data/goods/1488949996597l0.jpg',
@@ -86,7 +107,7 @@ const MainPage = () => {
             <CarouselBox>
                <CarouselTitle>이 상품 어때요?</CarouselTitle>
                <Carousel rows={1} cols={4} gap={1}>
-                  {Array.map((val, i) => {
+                  {product_list&&product_list.map((val, i) => {
                      return (
                         <Carousel.Item key={i}>
                               <CartBtn
@@ -94,7 +115,7 @@ const MainPage = () => {
                                  alt="상품 카트에 담기 아이콘"
                               />
                               <ProductImg
-                                 src={val.url}
+                                 src={val.imgUrl}
                                  style={{
                                     margin: '0 10px',
                                     background: '#ff000040',

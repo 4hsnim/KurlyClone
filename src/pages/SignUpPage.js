@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUpDB } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
+import DaumPostcode from 'react-daum-postcode';
 
 const SignUpPage = () => {
  
@@ -14,12 +15,29 @@ const SignUpPage = () => {
   const [password, SetPassword] = useState("");
   const [passwordCheck, SetPasswordCheck] = useState("");
   const [address, SetAddress] = useState("");
+  const [openPostcode, setOpenPostcode] = useState(false);
 
   const id_ref = React.useRef(null);
   const nickname_ref = React.useRef(null);
   const password_ref = React.useRef(null);
   const passwordCheck_ref = React.useRef(null);
   const address_ref = React.useRef(null);
+
+  const handle = {
+    // 버튼 클릭 이벤트
+    clickButton: () => {
+        setOpenPostcode(current => !current);
+    },
+
+    // 주소 선택 이벤트
+    selectAddress: (data) => {
+        console.log(`
+            주소: ${data.address},
+            우편번호: ${data.zonecode}
+        `)
+        setOpenPostcode(false);
+    },
+}
 
   const OnChangeId = (e) => {
     SetId(e.target.value);
@@ -144,7 +162,15 @@ const SignUpPage = () => {
           <tr>
             <Title>주소</Title>
             <Sub>
-              <BtnAddress>
+              <BtnAddress
+                onClick={handle.clickButton}
+              >
+                {openPostcode && 
+                <DaumPostcode                    
+                    onComplete={handle.selectAddress}  // 값을 선택할 경우 실행되는 이벤트
+                    autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+                    defaultQuery='판교역로 235' // 팝업을 열때 기본적으로 입력되는 검색어 
+                    />}
                 <BtnTitle>주소 검색</BtnTitle>
               </BtnAddress>
             </Sub>
@@ -271,5 +297,7 @@ const BtnSignTxt = styled.span`
   font-size: 15px;
   color: #fff;
 `;
+
+
 
 export default SignUpPage;

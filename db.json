@@ -2,196 +2,46 @@
   "list": [
     {
       "id": 1,
-      "loginId": "loginId",
-      "password": "password",
-      "nickname": "nickname",
-      "address": "address"
-    },
-    {
-      "id": 2,
-      "loginId": "loginId2",
-      "password": "password",
-      "nickname": "nickname",
-      "address": "address"
-    },
-    {
-      "loginId": "테스트아이디1",
-      "nickname": "테스트닉네임",
-      "password": "123123",
-      "id": 3
-    },
-    {
-      "loginId": "ㅁㄴㅇㅁㄴㅇ",
-      "nickname": "ㅁㄴㅇㅁㄴㅇ",
-      "password": "asdasd",
-      "id": 4
-    },
-    {
-      "loginId": "ㅁㄴㅇㅁㄴㅇ",
-      "nickname": "ㅁㄴㅇㅁㄴㅇ",
-      "password": "asdasd",
-      "id": 5
-    },
-    {
-      "loginId": "스파르타",
-      "nickname": "123123",
-      "password": "123123",
-      "id": 6
-    },
-    {
-      "loginId": "스파르타1111",
-      "nickname": "ㅁㄴㅇㄻㄴㅇㄹ",
-      "password": "asdfasdf",
-      "id": 7
-    },
-    {
-      "loginId": "스파르타1111",
-      "nickname": "ㅁㄴㅇㄻㄴㅇㄹ",
-      "password": "asdfasdf",
-      "id": 8
-    },
-    {
-      "loginId": "ㅁㄴㅇㄻㄴㅇㄹ",
-      "nickname": "ㄴㅁㅇㄻㄴㅇㄹ",
-      "password": "asdfas",
-      "id": 9
-    },
-    {
-      "loginId": "123123123",
-      "nickname": "123123123",
-      "password": "123123",
-      "id": 10
-    },
-    {
-      "loginId": "asdasd",
-      "nickname": "asdasd",
-      "password": "asdasd",
-      "id": 11
-    },
-    {
-      "loginId": "asdasdasd",
-      "nickname": "asdasd",
-      "password": "asdas",
-      "id": 12
-    },
-    {
-      "loginId": "asdasdasdasdasdasd",
-      "nickname": "asdasdasdasd",
-      "password": "asdasd",
-      "id": 13
-    },
-    {
-      "loginId": "태ㅔ스트아이디123",
-      "password": "123123",
-      "nickname": "123123",
-      "id": 14
-    },
-    {
-      "loginId": "asdfsa",
-      "password": "asdf",
-      "nickname": "asdfasdf",
-      "id": 15
-    },
-    {
-      "loginId": "회원가입테스트아이디",
-      "password": "asdfasdf",
-      "nickname": "ㅁㄴㅇㄻㄴㅇㄹ",
-      "id": 16
-    },
-    {
-      "loginId": "회원가입테스트아이디",
-      "password": "asdfasdf",
-      "nickname": "ㅁㄴㅇㄻㄴㅇㄹ",
-      "id": 17
-    },
-    {
-      "loginId": "asdfasdfasdf",
-      "password": "123123",
-      "nickname": "123123",
-      "id": 18
-    },
-    {
-      "loginId": "asdfasdfasdf",
-      "password": "asdfasdf",
-      "nickname": "asdfasfasd",
-      "id": 19
-    },
-    {
-      "loginId": "123asdasd",
-      "password": "asdasd",
-      "nickname": "asdasdasd",
-      "id": 20
-    },
-    {
-      "loginId": "asdfasdf",
-      "password": "asdfsadf",
-      "nickname": "asdfasdf",
-      "id": 21
-    },
-    {
-      "loginId": "asasdd",
-      "password": "123123",
-      "nickname": "123123",
-      "id": 22
-    },
-    {
-      "loginId": "123123123",
-      "password": "123123",
-      "nickname": "123123",
-      "id": 23
-    },
-    {
-      "loginId": "asdfasfd",
-      "password": "123123",
-      "nickname": "123123",
-      "id": 24
-    },
-    {
-      "loginId": "ㅋㅌㅍㅊㅋㅌㅊㅍ",
-      "password": "zxcvzxcv",
-      "nickname": "ㅋㅌㅊㅍㅋㅌㅍㅊ",
-      "id": 25
-    },
-    {
-      "loginId": "zxcvzxcvzxcvzx",
-      "password": "zxcvzxcv",
-      "nickname": "zxcvzxcv",
-      "id": 26
-    },
-    {
-      "loginId": "sparta123",
-      "password": "sparta123",
-      "id": 27
-    },
-    {
-      "loginId": "sparta123",
-      "password": "123123",
-      "id": 28
-    },
-    {
-      "loginId": "sparta123",
-      "password": "123123",
-      "id": 29
-    },
-    {
-      "loginId": "asdfasdf",
-      "password": "asdfasdf",
-      "id": 30
-    },
-    {
-      "loginId": "asdfasdf",
-      "password": "asdfasdf",
-      "id": 31
-    },
-    {
-      "loginId": "123123123",
-      "password": "123123123",
-      "id": 32
-    },
-    {
-      "loginId": "123123스파르타",
-      "password": "123123",
-      "id": 33
-    }
+      "title": "title",
+      "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg",
+      "price": "10000"
+      },
+      {
+        "id": 2,
+        "title": "title",
+        "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1485857289116l0.jpg",
+        "price": "20000"
+        },
+        {
+          "id": 3,
+          "title": "title",
+          "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1488949996597l0.jpg",
+          "price": "30000"
+        },
+        {
+          "id": 4,
+          "title": "title",
+          "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg",
+          "price": "30000"
+        },
+        {
+          "id": 5,
+          "title": "title",
+          "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg",
+          "price": "30000"
+        },
+        {
+          "id": 6,
+          "title": "title",
+          "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg",
+          "price": "30000"
+          },
+          {
+            "id": 7,
+            "title": "title",
+            "imgUrl": "https://firebasestorage.googleapis.com/v0/b/magazine-40b77.appspot.com/o/images%2F%EC%95%84%EC%9D%B4%EC%9C%A0.jpg?alt=media&token=70b1c5be-268d-41e9-bc71-91de9b1ec11c",
+            "price": "30000"
+            }
+
   ]
 }
