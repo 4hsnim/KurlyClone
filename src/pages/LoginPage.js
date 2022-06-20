@@ -1,20 +1,54 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import {loginDB} from "../redux/modules/user";
+
 const LoginPage = () => {
+   const dispatch = useDispatch()
+   const navigate = useNavigate();
+   const [id, SetId] = useState("");
+   const [password, SetPassword] = useState("");
+
+   const OnChangeId = (e) => {
+      SetId(e.target.value)
+   }
+
+   const OnChangePassword = (e) => {
+      SetPassword(e.target.value)
+   }
+
+   let formData = {
+      loginId: id,
+      password: password,
+    };
+
+    function login() {
+      dispatch(loginDB(formData));
+      navigate("/");
+    }
+   
+
+
+
    return (
       <>
          <Container>
-              <Caption>로그인</Caption>
+            <Caption>로그인</Caption>
             <Card>
                <Form>
                   <Input
+                     onChange={OnChangeId}
                      type="text"
                      placeholder="아이디를 입력해주세요."
                      spellcheck="false"
                      data-ms-editor="true"
                   />
                   <Input
+                     onChange={OnChangePassword}
                      type="password"
                      placeholder="비밀번호를 입력해주세요."
                   />
@@ -24,12 +58,14 @@ const LoginPage = () => {
                   <span class="bar"></span>
                   <Link>| &nbsp;비밀번호 찾기</Link>
                </LinkCard>
-               <LoginBtn>
+
+               <LoginBtn onClick={login}>
                   <BtnLoginTxt>로그인</BtnLoginTxt>
+
                </LoginBtn>
-               <SignUp>
+               <SignUpBtn onClick={ClickSignUp}>
                   <BtnSignUpTxt>회원가입</BtnSignUpTxt>
-               </SignUp>
+               </SignUpBtn>
             </Card>
          </Container>
       </>
@@ -95,7 +131,7 @@ const LoginBtn = styled.button`
    background-color: #5f0080;
 `;
 
-const SignUp = styled.button`
+const SignUpBtn = styled.button`
    display: block;
    overflow: hidden;
    width: 100%;
@@ -104,7 +140,6 @@ const SignUp = styled.button`
    text-align: center;
    border: 1px solid #5f0081;
    background-color: #fff;
-
 `;
 const BtnLoginTxt = styled.span`
    box-sizing: border-box;

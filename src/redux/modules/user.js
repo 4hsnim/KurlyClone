@@ -1,54 +1,87 @@
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 
 // Actions
 const LOAD = 'kurly/user/LOAD';
-const CREATE = 'my-app/widgets/CREATE';
-const UPDATE = 'my-app/widgets/UPDATE';
-const REMOVE = 'my-app/widgets/REMOVE';
+const SET = 'kurly/user/SET';
+const UPDATE = 'kurly/user/UPDATE';
+const REMOVE = 'kurly/user/REMOVE';
 
+const initialState = {
+    is_loaded: false,
+    list: [],
+};
 
 
 // Action Creators
-export function loadWidgets() {
-return { type: LOAD };
+export function loadUser(food_list) {
+return { type: LOAD, food_list};
 }
 
-export function createWidget(widget) {
-return { type: CREATE, widget };
+export function setUser(widget) {
+return { type: SET, widget };
 }
 
-export function updateWidget(widget) {
+export function updateUser(widget) {
 return { type: UPDATE, widget };
 }
 
-export function removeWidget(widget) {
+export function removeUser(widget) {
 return { type: REMOVE, widget };
 }
 
 // Middleware
-export const signUpDB = async (formData) => {
-    await axios
-        .post('http://localhost:5001/list',formData)
-        .then((response) => {
-            console.log(response)
-            window.alert("회원가입이 완료되었습니다.")
-            Navigate('/')
-        })
-        .catch((error) => {
-            console.log(error)
-            window.alert("에러!")
-        })
-}
+// export const signUpDB = async (dispatch,formData) => {
+//     console.log(formData)
+//     // await axios
+    
+//     //     .post('http://localhost:5001/list',formData)
+//     //     .then((response) => {
+//     //         console.log(response)
+//     //         window.alert("회원가입이 완료되었습니다.")           
+//     //     })
+//     //     .catch((error) => {
+//     //         console.log(error)
+//     //         window.alert("에러!")
+//     //     })
+//     return async function ( dispatch )
+// }
 
-export const loginDB = async (formData) => {
-    await axios
-        .post('http://localhost:5001/list',formData)
-        .then((response) => {
-            console.log(response)
-            localStorage.setItem("token",response.data.token)
-        })
-}
+export const signUpDB = (formData) => {
+    return async function (dispatch) {   
+        await axios
+    .post('http://localhost:5001/list',formData)
+    .then((response) => {
+        console.log(response)
+       window.alert("회원가입이 완료되었습니다.")
+
+    })
+    .catch((error) => {
+       console.log(error)
+        window.alert("에러!")
+   })
+        console.log(formData)
+    };
+};
+
+export const loginDB = (formData) => {
+    return async function (dispatch) {   
+        console.log(formData)
+        await axios
+    .post('http://localhost:5001/list',formData)
+    .then((response) => {
+        console.log(response)
+        window.alert(`${formData.loginId}님 환영합니다!`)
+        localStorage.setItem("token", response.data.token);
+    })
+    .catch((error) => {
+       console.log(error)
+        window.alert("에러!")
+   })
+    };
+};
 
 
 
@@ -56,6 +89,9 @@ export const loginDB = async (formData) => {
 // Reducer
 export default function reducer(state = {}, action = {}) {
     switch (action.type) {
+    case SET : {
+        return {}
+    }
     
     default: return state;
     }
