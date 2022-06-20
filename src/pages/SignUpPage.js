@@ -1,3 +1,4 @@
+
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
@@ -6,7 +7,13 @@ import { signUpDB } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
 import DaumPostcode from 'react-daum-postcode';
 
+
+import SignUp from '../components/signup/SignUp';
+
+
+
 const SignUpPage = () => {
+
  
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -194,6 +201,7 @@ const Container = styled.div`
   margin: 16em;
   position: relative;
   top: 40px;
+
 `;
 
 const Table = styled.table`
@@ -201,25 +209,31 @@ const Table = styled.table`
 `;
 
 const Caption = styled.h3`
-  margin: 2em;
-  text-align: center;
-  color: #333;
-  font-size: 28px;
+
+   display: block;
+   margin: 2em;
+   text-align: center;
+   color: #333;
+   font-size: 28px;
 `;
 
 const Title = styled.td`
-  width: 130px;
-  height: 60px;
-  font-weight: 500;
-  font-size: 15px;
+   display: block;
+   width: 130px;
+   height: 60px;
+   position: relative;
+   top: 15px;
+   font-weight: 500;
+   font-size: 15px;
 `;
 const Sub = styled.td`
-  width: 150px;
-  height: 60px;
-  position: relative;
-  left: 10px;
-  padding: 10px auto;
-`;
+   width: 150px;
+   height: 60px;
+   position: relative;
+   left: 5px;
+   padding: 10px auto;
+`
+
 
 const Input = styled.input`
   width: 332px;
@@ -273,10 +287,12 @@ const BtnTitle = styled.p`
 `;
 
 const BtnContainer = styled.td`
-  position: relative;
-  top: 50px;
-  left: 12px;
-`;
+
+   position: relative;
+   top: 50px;
+   left: 7px;
+`
+
 const BtnSignUp = styled.button`
   display: block;
   overflow: hidden;

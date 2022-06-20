@@ -26,92 +26,100 @@ const Detail = (props) => {
 
 
   return (
-    <>
-      <Section>
-        <Div>
-          <Img>
-            <ImgSrc src="https://firebasestorage.googleapis.com/v0/b/magazine-40b77.appspot.com/o/images%2F%EC%95%84%EC%9D%B4%EC%9C%A0.jpg?alt=media&token=70b1c5be-268d-41e9-bc71-91de9b1ec11c" alt="" />
-          </Img>
+     <>
+        <Container>
+           <Section>
+              <Div>
+                 <Img>
+                    <ImgSrc
+                       src="https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg"
+                       alt=""
+                    />
+                 </Img>
 
-          <Fix>
-            <Wrap>
-              <InfoSection>
-                <Wrapper>
-                  <Strong>
-                    <span>브랜드네임입니다</span>
-                    프로덕트 이름입니다
-                  </Strong>
-                </Wrapper>
-                <Content>프로덕트 인포입니다</Content>
-              </InfoSection>
+                 <Fix>
+                    <Wrap>
+                       <InfoSection>
+                          <Wrapper>
+                             <Strong>
+                                <span>브랜드네임</span>
+                                프로덕트 이름
+                             </Strong>
+                          </Wrapper>
+                          <Content>프로덕트 인포</Content>
+                       </InfoSection>
 
-              <div>
-                <Price>
-                  <Num>
-                     `10,000(가격)` <Won>원</Won>
-                  </Num>
-                </Price>
+                       <div>
+                          <Price>
+                             <Num>
+                                10,000 <Won>원</Won>
+                             </Num>
+                          </Price>
 
-                <P>로그인 후, 회원할인가와 적립혜택이 제공됩니다.</P>
-              </div>
+                          <P>로그인 후, 회원할인가와 적립혜택이 제공됩니다.</P>
+                       </div>
 
-              <Border />
-              <Tit>
-                안내사항 <Con> 프로덕트 안내사항입니다</Con>
-              </Tit>
+                       <Border />
+                       <Tit>
+                          안내사항 <Con> 프로덕트 안내사항입니다</Con>
+                       </Tit>
 
-              <Border />
-              <Tit>
-                구매수량
-                <SectionBtn>
-                  <Box>
-                    <BtnNum onClick={min}>
-                      <i className="fa-solid fa-minus"></i>
-                    </BtnNum>
-                    <label htmlFor="1">
-                      <Input type="number" id="1" />
-                      {number}
-                    </label>
+                       <Border />
+                       <Tit>
+                          구매수량
+                          <SectionBtn>
+                             <Box>
+                                <BtnNum onClick={min}>
+                                   <i className="fa-solid fa-minus"></i>
+                                </BtnNum>
+                                <label htmlFor="1">
+                                   <Input type="number" id="1" />
+                                   {number}
+                                </label>
 
-                    <BtnNum onClick={max}>
-                      <i className="fa-solid fa-plus"></i>
-                    </BtnNum>
-                  </Box>
-                </SectionBtn>
-              </Tit>
-              <Border />
+                                <BtnNum onClick={max}>
+                                   <i className="fa-solid fa-plus"></i>
+                                </BtnNum>
+                             </Box>
+                          </SectionBtn>
+                       </Tit>
+                       <Border />
 
-              <Order>
-                <div>
-                  <Total>
-                    총 상품금액 :<Bold> 총 금액 입니다</Bold>원
-                  </Total>
-                  <Ho>
-                    <IconPoint>적립</IconPoint>로그인 후,회원할인가와 적립혜택
-                    적용
-                  </Ho>
-                  <Point>
-                    <WrapIcon>
-                      <LikeBtn />
-                      <Alert />
+                       <Order>
+                          <div>
+                             <Total>
+                                총 상품금액 :<Bold> 10,000</Bold>원
+                             </Total>
+                             <Ho>
+                                <IconPoint>적립</IconPoint>로그인
+                                후,회원할인가와 적립혜택 적용
+                             </Ho>
+                             <Point>
+                                <WrapIcon>
+                                   <LikeBtn />
+                                   <Alert />
 
-                      <Reg>
-                        <Btn >장바구니 담기</Btn>
-                      </Reg>
-                    </WrapIcon>
-                  </Point>
-                </div>
-              </Order>
-            </Wrap>
-          </Fix>
-        </Div>
-      </Section>
-    </>
+                                   <Reg>
+                                      <Btn>장바구니 담기</Btn>
+                                   </Reg>
+                                </WrapIcon>
+                             </Point>
+                          </div>
+                       </Order>
+                    </Wrap>
+                 </Fix>
+              </Div>
+           </Section>
+        </Container>
+     </>
   );
 };
 
 export default Detail;
 
+const Container = styled.div`
+  margin: 20px auto;
+`;
 const Section = styled.section`
   width: 1050px;
   margin: 20px auto;
@@ -119,7 +127,7 @@ const Section = styled.section`
   display: flex;
 `;
 
-const Ho = styled.div`
+const Ho = styled.tr`
   /* margin-right: 50px; */
   padding: 0 5px;
 `;
@@ -139,11 +147,11 @@ const IconPoint = styled.div`
   text-align: center;
 `;
 
-const Total = styled.div`
+const Total = styled.tr`
   font-weight: 700;
   font-size: 15px;
   margin-bottom: 10px;
-  margin-right: 70px;
+
   display: flex;
   justify-content: right;
 `;
@@ -176,7 +184,7 @@ const Div = styled.div`
   display: flex;
 `;
 
-const Order = styled.div`
+const Order = styled.table`
   margin-bottom: 10px;
   padding: 10px;
   margin-right: 210px;
