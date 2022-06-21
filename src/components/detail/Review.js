@@ -210,14 +210,11 @@ const Review = ({ productId, name }) => {
                              </TbodyTr>
                           );
                        })}
-                       
-                       {reviewList.map((val, i) => {
-                        return (
+                     
                            <tr>
                               <td colspan={6}>{modal ? <Modal /> : ''}</td>
                            </tr>
-                        );
-                       })}
+            
                     </Tbody>
                  </Table>
                  {/* <div>

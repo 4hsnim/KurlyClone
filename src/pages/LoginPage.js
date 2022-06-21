@@ -63,7 +63,7 @@ const LoginPage = () => {
                   <BtnLoginTxt>로그인</BtnLoginTxt>
 
                </LoginBtn>
-               <SignUpBtn onClick={ClickSignUp}>
+               <SignUpBtn>
                   <BtnSignUpTxt>회원가입</BtnSignUpTxt>
                </SignUpBtn>
             </Card>

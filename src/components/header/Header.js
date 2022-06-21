@@ -83,17 +83,17 @@ const Header = () => {
                            autocomplete="off"
                            spellcheck="false"
                         />
-
-                        <FontAwesomeIcon
-                           icon={faMagnifyingGlass}
-                           style={{
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              position: 'relative',
-                              right: '30',
-                              fontSize: '17px',
-                           }}
-                        />
+                        <div style={{position: 'absolute'}}>
+                           <FontAwesomeIcon
+                              icon={faMagnifyingGlass}
+                              style={{
+                                 position: 'relative',
+                                 fontSize: '17px',
+                                 left: 215,
+                                 bottom: 27
+                              }}
+                           />
+                        </div>
                      </div>
 
                      <HiOutlineLocationMarker
@@ -102,7 +102,7 @@ const Header = () => {
                            marginRight: 15,
                            width: 36,
                            height: 39,
-                           fontWeight: 100
+                           fontWeight: 100,
                         }}
                      />
                      <BsHeart
@@ -113,12 +113,13 @@ const Header = () => {
                            height: 34,
                            display: 'flex',
                            position: 'relative',
-                           top: 3
+                           top: 3,
                         }}
                      />
                      <BsCart2
                         style={{ marginLeft: 15, width: 36, height: 36 }}
-                     onClick={goCart}/>
+                        onClick={goCart}
+                     />
                   </IconContainer>
                </CategoryBox>
             </Box>

@@ -92,15 +92,7 @@ const MainPage = () => {
       },
    ]; 
 
-   const goCart = () => {
-      window.alert('상품이 추가되었습니다.')
-      navigate('/cart');
-   }
 
-   const goDetail = () => {
-      navigate('/Detail');
-
-   }
    return (
       <>
          <Section>
@@ -122,13 +114,13 @@ const MainPage = () => {
                   {product_list&&product_list.map((val, i) => {
                      return (
                         <Carousel.Item key={i}>
-                              <CartBtn
-                                 src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/cart_white_45_45.svg"
-                                 alt="상품 카트에 담기 아이콘"
-                              />
+                           <CartBtn
+                              src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/cart_white_45_45.svg"
+                              alt="상품 카트에 담기 아이콘"
+                           />
+                           <ImgBox>
                               <ProductImg
                                  src={val.imgUrl}
-
                                  style={{
                                     margin: '0 10px',
                                     background: '#ff000040',
