@@ -11,7 +11,7 @@ import { BsCart2, BsHeart } from 'react-icons/bs';
 
 const Header = () => {
    const navigate = useNavigate();
-   const token = localStorage.getItem('login-token');
+   const token = localStorage.getItem('jwt');
 
 
 
