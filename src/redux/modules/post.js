@@ -1,5 +1,4 @@
 import axios from "axios";
-import { initializeConnect } from "react-redux/es/components/connect";
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 // Actions
 const LOAD = 'my-app/widgets/LOAD';
