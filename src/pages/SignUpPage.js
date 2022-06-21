@@ -202,6 +202,7 @@ const SignUpPage = () => {
                     onComplete={handle.selectAddress}  // 값을 선택할 경우 실행되는 이벤트
                     autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
                     defaultQuery='판교역로 235' // 팝업을 열때 기본적으로 입력되는 검색어 
+                    style={{ position: 'relative', zIndex:10}}
                     />}
                 <BtnTitle>주소 검색</BtnTitle>
               </BtnAddress>
@@ -312,31 +313,33 @@ const BtnTitle = styled.p`
 `;
 
 const BtnContainer = styled.td`
-
+   z-index: 2;
    position: relative;
    top: 50px;
    left: 7px;
 `
 
 const BtnSignUp = styled.button`
-  display: block;
-  overflow: hidden;
-  width: 100%;
-  height: 54px;
-  margin: 5px 0;
-  border-radius: 3px;
-  text-align: center;
-  border: 1px solid #5f0081;
-  background-color: #5f0080;
+   z-index: 2;
+   display: block;
+   overflow: hidden;
+   width: 100%;
+   height: 54px;
+   margin: 5px 0;
+   border-radius: 3px;
+   text-align: center;
+   border: 1px solid #5f0081;
+   background-color: #5f0080;
 `;
 
 const BtnSignTxt = styled.span`
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  letter-spacing: -0.6px;
-  font-size: 15px;
-  color: #fff;
+   z-index: 2;
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   letter-spacing: -0.6px;
+   font-size: 15px;
+   color: #fff;
 `;
 
 

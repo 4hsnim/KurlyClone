@@ -13,6 +13,7 @@ const ReviewWritePage = () => {
       <>
          <Container>
             <Caption>후기 작성</Caption>
+            
             <Table>
                <thead>
                   <Tr>
@@ -77,12 +78,14 @@ const Container = styled.div`
 `;
 
 const Caption = styled.h2`
+   width: 800px;
    text-align: left;
+   margin: 10px auto;
    padding-bottom: 10px;
    border-bottom: 2px solid #5f0080;
-
 `;
 const Table = styled.table`
+   margin: auto;
    border-bottom: 1px solid #ddd;
 `;
 const ImgContainer = styled.div`

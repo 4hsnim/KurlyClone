@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SimpleImageSlider from 'react-simple-image-slider';
 import Carousel from 'react-grid-carousel';
-
+import {useNavigate} from 'react-router-dom';
 import {getPosts, loadProductDB} from '../redux/modules/post'
 import { useDispatch, useSelector } from 'react-redux';
 import  {getposts} from '../redux/modules/post'
@@ -11,17 +11,19 @@ import {useNavigate} from 'react-router-dom'
 
 
 const MainPage = () => {
-   
-   const navigate = useNavigate()
-   const dispatch = useDispatch()
+
+   const navigate = useNavigate();   
+   const dispatch = useDispatch();
+
+   const goDetail = () => {
+      navigate('/detail/:Id');
+   }
+
    // const product_list = useSelector((state)=> state.post)
    const [FirstLoad, setFirstLoad] = React.useState(true);
    // console.log(product_list)
    // React.useEffect( () => {
-
    //       dispatch(loadProductDB())
-
-      
    // },[])
   
    React.useEffect (() => {
@@ -94,6 +96,7 @@ const MainPage = () => {
          url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
       },
    ]; 
+
    return (
       <>
          <Section>
@@ -112,14 +115,16 @@ const MainPage = () => {
                <CarouselTitle>이 상품 어때요?</CarouselTitle>
 
                <Carousel rows={1} cols={4} gap={1}>
-                  {product_list&&product_list.map((val, i) => {
-                     return (
-                        <Carousel.Item key={i}>
+                  {product_list &&
+                     product_list.map((val, i) => {
+                        return (
+                           <Carousel.Item key={i}>
                               <CartBtn
                                  src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/cart_white_45_45.svg"
                                  alt="상품 카트에 담기 아이콘"
                               />
                               <ImgBox>
+
                               <ProductImg
                                  src={val.imgUrl}
                                  onClick={() => {
@@ -127,7 +132,6 @@ const MainPage = () => {
                                  }}
                                  style={{
                                     margin: '0 10px',
-                                    background: '#ff000040',
                                     textAlign: 'center',
                                     lineHeight: '200px',
                                     width: '239px',
@@ -138,13 +142,19 @@ const MainPage = () => {
                         </Carousel.Item>
                      );
                   })}
+
                </Carousel>
                <Img src="https://img-cf.kurly.com/banner/random-band/pc/img/9a8968a6-bce6-498a-b2ad-35199762ff1c" />
             </CarouselBox>
 
             <CarouselBox>
                <CarouselTitle>놓치면 후회할 가격</CarouselTitle>
-               <Carousel rows={1} cols={4} gap={1} style={{ position: 'relative' }}>
+               <Carousel
+                  rows={1}
+                  cols={4}
+                  gap={1}
+                  style={{ position: 'relative' }}
+               >
                   {Array.map((val, i) => {
                      return (
                         <Carousel.Item key={i}>
@@ -156,7 +166,6 @@ const MainPage = () => {
                               src={val.url}
                               style={{
                                  margin: '0 10px',
-                                 background: '#ff000040',
                                  textAlign: 'center',
                                  lineHeight: '200px',
                                  width: '239px',
@@ -168,6 +177,7 @@ const MainPage = () => {
                      );
                   })}
                </Carousel>
+               {/* <Img src="https://img-cf.kurly.com/banner/random-band/pc/img/f8432eab-3cb8-450f-b5c4-f8244986259f" /> */}
             </CarouselBox>
          </Section2>
       </>
@@ -185,6 +195,7 @@ const Section = styled.div`
 const Section2 = styled.div`
    position: relative;
    top: 100px;
+   padding-bottom: 50px;
    margin: 100px auto;
 `;
 const CarouselBox = styled.div`

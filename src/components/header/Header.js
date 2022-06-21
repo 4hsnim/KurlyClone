@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
 /*COMPONENTS*/
 import HoverList from './HoverList';
 /*ICONS*/
@@ -12,12 +11,23 @@ import { BsCart2, BsHeart } from 'react-icons/bs';
 
 const Header = () => {
    const navigate = useNavigate();
+   const token = localStorage.getItem('jwt');
+
+
+
+
+   const goLogin = () => {
+      localStorage.getItem(token);
+      navigate('/Login');
+   };
+
+   const goLogOut = () => {
+      localStorage.removeItem(token);
+      window.location.replace('/');
+   };
 
    const goMain = () => {
       navigate('/');
-   };
-   const goLogin = () => {
-      navigate('/Login');
    };
 
    const goSignUp = () => {
@@ -43,18 +53,32 @@ const Header = () => {
                      alt="서울, 경기, 인천 샛별배송, 수도권 이외 지역 택배배송"
                      onClick={goMain}
                   />
-                  {/* <span>
+
+                  {!token ? (
+                     <div>
+                        <Menu>
+                           고객센터
+                           <HoverList /> &nbsp;
+                        </Menu>
+                        <Menu onClick={goLogin}>로그인 &nbsp; |</Menu>
+                        <Menu onClick={goSignUp}>회원가입 &nbsp; |</Menu>
+                     </div>
+                  ) : (
+                     <div>
+                        {/* <span>
                어서오세요. 누구님    
                <ImgN
                   src="https://res.kurly.com/kurly/ico/2021/new_badge_28_28.png"
                   alt=""/>
             </span> */}
-                  <Menu>
-                     고객센터
-                     <HoverList /> &nbsp;
-                  </Menu>
-                  <Menu onClick={goLogin}>로그인 &nbsp; |</Menu>
-                  <Menu onClick={goSignUp}>회원가입 &nbsp; |</Menu>
+                        <Menu>
+                           고객센터
+                           <HoverList /> &nbsp;
+                        </Menu>
+                        <Menu onClick={goLogin}>로그아웃 &nbsp; |</Menu>
+                        <Menu onClick={goSignUp}>회원가입 &nbsp; |</Menu>
+                     </div>
+                  )}
                </UserMenu>
 
                <HeaderLogo>
@@ -68,6 +92,8 @@ const Header = () => {
 
                <CategoryBox>
                   {/* <FontAwesomeIcon icon={farBars} /> */}
+
+                
                   <Category>전체 카테고리</Category>
 
                   <Category>신상품</Category>
@@ -83,42 +109,42 @@ const Header = () => {
                            autocomplete="off"
                            spellcheck="false"
                         />
-
-                        <FontAwesomeIcon
-                           icon={faMagnifyingGlass}
-                           style={{
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              position: 'relative',
-                              right: '30',
-                              fontSize: '17px',
-                           }}
-                        />
+                        <div style={{ position: 'absolute' }}>
+                           <FontAwesomeIcon
+                              icon={faMagnifyingGlass}
+                              style={{
+                                 position: 'relative',
+                                 fontSize: '17px',
+                                 left: 215,
+                                 bottom: 27,
+                              }}
+                           />
+                        </div>
                      </div>
 
-                     <HiOutlineLocationMarker
+                     {/* <HiOutlineLocationMarker
                         style={{
                            marginLeft: 15,
                            marginRight: 15,
                            width: 36,
                            height: 39,
-                           fontWeight: 100
+                           fontWeight: 100,
                         }}
-                     />
+                     /> */}
                      <BsHeart
                         style={{
                            marginLeft: 15,
-                           marginRight: 15,
-                           width: 35,
-                           height: 34,
+                           width: 33,
+                           height: 32,
                            display: 'flex',
                            position: 'relative',
-                           top: 3
+                           top: 3,
                         }}
                      />
                      <BsCart2
                         style={{ marginLeft: 15, width: 36, height: 36 }}
-                     onClick={goCart}/>
+                        onClick={goCart}
+                     />
                   </IconContainer>
                </CategoryBox>
             </Box>
