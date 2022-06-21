@@ -14,10 +14,16 @@ const LoginPage = () => {
    const [password, SetPassword] = useState("");
 
    const OnChangeId = (e) => {
+      const idRegEx  = /^[a-z0-9]+$/
+      const idCurrent = e.target.value
       SetId(e.target.value)
+      if (!idRegEx.test(idCurrent)){
+
+      }
    }
 
    const OnChangePassword = (e) => {
+      // const password
       SetPassword(e.target.value)
    }
 
@@ -63,7 +69,7 @@ const LoginPage = () => {
                   <BtnLoginTxt>로그인</BtnLoginTxt>
 
                </LoginBtn>
-               <SignUpBtn onClick={ClickSignUp}>
+               <SignUpBtn>
                   <BtnSignUpTxt>회원가입</BtnSignUpTxt>
                </SignUpBtn>
             </Card>

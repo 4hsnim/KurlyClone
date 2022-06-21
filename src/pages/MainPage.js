@@ -6,11 +6,13 @@ import Carousel from 'react-grid-carousel';
 import {getPosts, loadProductDB} from '../redux/modules/post'
 import { useDispatch, useSelector } from 'react-redux';
 import  {getposts} from '../redux/modules/post'
+import {useNavigate} from 'react-router-dom'
 
 
 
 const MainPage = () => {
    
+   const navigate = useNavigate()
    const dispatch = useDispatch()
    // const product_list = useSelector((state)=> state.post)
    const [FirstLoad, setFirstLoad] = React.useState(true);
@@ -21,10 +23,11 @@ const MainPage = () => {
 
       
    // },[])
-   const product_list = useSelector((state)=> state.post.posts)
+  
    React.useEffect (() => {
       dispatch(getPosts())
    },[])
+   const product_list = useSelector((state)=> state.post.posts)
    console.log(product_list)
 
 
@@ -91,16 +94,6 @@ const MainPage = () => {
          url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
       },
    ]; 
-
-   const goCart = () => {
-      window.alert('상품이 추가되었습니다.')
-      navigate('/cart');
-   }
-
-   const goDetail = () => {
-      navigate('/Detail');
-
-   }
    return (
       <>
          <Section>
@@ -126,9 +119,12 @@ const MainPage = () => {
                                  src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/cart_white_45_45.svg"
                                  alt="상품 카트에 담기 아이콘"
                               />
+                              <ImgBox>
                               <ProductImg
                                  src={val.imgUrl}
-
+                                 onClick={() => {
+                                    navigate('/detail/'+ val.id)
+                                 }}
                                  style={{
                                     margin: '0 10px',
                                     background: '#ff000040',
