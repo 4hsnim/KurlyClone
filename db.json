@@ -5,43 +5,57 @@
       "title": "title",
       "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg",
       "price": "10000"
-      },
-      {
-        "id": 2,
-        "title": "title",
-        "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1485857289116l0.jpg",
-        "price": "20000"
-        },
-        {
-          "id": 3,
-          "title": "title",
-          "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1488949996597l0.jpg",
-          "price": "30000"
-        },
-        {
-          "id": 4,
-          "title": "title",
-          "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg",
-          "price": "30000"
-        },
-        {
-          "id": 5,
-          "title": "title",
-          "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg",
-          "price": "30000"
-        },
-        {
-          "id": 6,
-          "title": "title",
-          "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg",
-          "price": "30000"
-          },
-          {
-            "id": 7,
-            "title": "title",
-            "imgUrl": "https://firebasestorage.googleapis.com/v0/b/magazine-40b77.appspot.com/o/images%2F%EC%95%84%EC%9D%B4%EC%9C%A0.jpg?alt=media&token=70b1c5be-268d-41e9-bc71-91de9b1ec11c",
-            "price": "30000"
-            }
-
+    },
+    {
+      "id": 2,
+      "title": "title",
+      "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1485857289116l0.jpg",
+      "price": "20000"
+    },
+    {
+      "id": 3,
+      "title": "title",
+      "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1488949996597l0.jpg",
+      "price": "30000"
+    },
+    {
+      "id": 4,
+      "title": "title",
+      "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg",
+      "price": "30000"
+    },
+    {
+      "id": 5,
+      "title": "title",
+      "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg",
+      "price": "30000"
+    },
+    {
+      "id": 6,
+      "title": "title",
+      "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg",
+      "price": "30000"
+    },
+    {
+      "id": 7,
+      "title": "title",
+      "imgUrl": "https://firebasestorage.googleapis.com/v0/b/magazine-40b77.appspot.com/o/images%2F%EC%95%84%EC%9D%B4%EC%9C%A0.jpg?alt=media&token=70b1c5be-268d-41e9-bc71-91de9b1ec11c",
+      "price": "30000"
+    },
+    {
+      "loginId": "asdasdasd",
+      "password": "asdasdasd",
+      "passwordCheck": "asdasd",
+      "nickname": "asdasdasd",
+      "id": 8
+    },
+    {
+      "loginId": "sparta123",
+      "id": 9
+    },
+    {
+      "loginId": "sparta123",
+      "id": 10
+    }
   ]
 }

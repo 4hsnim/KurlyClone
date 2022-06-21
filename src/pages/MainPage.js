@@ -6,26 +6,30 @@ import {useNavigate} from 'react-router-dom';
 import {getPosts, loadProductDB} from '../redux/modules/post'
 import { useDispatch, useSelector } from 'react-redux';
 import  {getposts} from '../redux/modules/post'
+import {useNavigate} from 'react-router-dom'
 
 
 
 const MainPage = () => {
+
    const navigate = useNavigate();   
    const dispatch = useDispatch();
 
    const goDetail = () => {
       navigate('/detail/:Id');
    }
+
    // const product_list = useSelector((state)=> state.post)
    const [FirstLoad, setFirstLoad] = React.useState(true);
    // console.log(product_list)
    // React.useEffect( () => {
    //       dispatch(loadProductDB())
    // },[])
-   const product_list = useSelector((state)=> state.post.posts)
+  
    React.useEffect (() => {
       dispatch(getPosts())
    },[])
+   const product_list = useSelector((state)=> state.post.posts)
    console.log(product_list)
 
 
@@ -93,7 +97,6 @@ const MainPage = () => {
       },
    ]; 
 
-
    return (
       <>
          <Section>
@@ -121,21 +124,25 @@ const MainPage = () => {
                                  alt="상품 카트에 담기 아이콘"
                               />
                               <ImgBox>
-                                 <ProductImg
-                                    onClick={goDetail}
-                                    src={val.imgUrl}
-                                    style={{
-                                       margin: '0 10px',
-                                       textAlign: 'center',
-                                       lineHeight: '200px',
-                                       width: '239px',
-                                       height: '320px',
-                                    }}
-                                 />
-                              </ImgBox>
-                           </Carousel.Item>
-                        );
-                     })}
+
+                              <ProductImg
+                                 src={val.imgUrl}
+                                 onClick={() => {
+                                    navigate('/detail/'+ val.id)
+                                 }}
+                                 style={{
+                                    margin: '0 10px',
+                                    textAlign: 'center',
+                                    lineHeight: '200px',
+                                    width: '239px',
+                                    height: '320px',
+                                 }}
+                              />
+                           </ImgBox>
+                        </Carousel.Item>
+                     );
+                  })}
+
                </Carousel>
                <Img src="https://img-cf.kurly.com/banner/random-band/pc/img/9a8968a6-bce6-498a-b2ad-35199762ff1c" />
             </CarouselBox>

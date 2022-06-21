@@ -2,13 +2,16 @@ import React, { useState }  from "react";
 import { useDispatch, useSelector } from "react-redux";
 import{ useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useParams } from "react-router";
-/*ICONS*/
+
+import { useParams,useLocation } from "react-router";
+import detail, {getDetail} from '../../redux/modules/detail'
 import { BiMinus, BiPlus } from 'react-icons/bi';
+
 const Detail = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
+
 
   const [number, setNumber] = useState(1);
 
@@ -23,6 +26,13 @@ const Detail = (props) => {
       window.alert("최대 주문 수량은 10개입니다.")
     } else  setNumber(parseInt(number) + 1);
   };
+
+  React.useEffect (() => {
+    dispatch(getDetail())
+  },[])
+
+  const detail_Info = useSelector((state) => state.detail.detailInfo)
+  console.log(detail_Info)
 
 
   const addCart = () => {
@@ -49,16 +59,16 @@ const Detail = (props) => {
                           <Wrapper>
                              <Strong>
                                 <span>브랜드네임</span>
-                                프로덕트 이름
+                                여기에 타이틀내용
                              </Strong>
                           </Wrapper>
-                          <Content>프로덕트 인포</Content>
+                          <Content>여기에 컨텐츠내용</Content>
                        </InfoSection>
 
                        <div>
                           <Price>
                              <Num>
-                                10,000 <Won>원</Won>
+                             여기에 얼마인지<Won>원</Won>
                              </Num>
                           </Price>
 
@@ -67,7 +77,7 @@ const Detail = (props) => {
 
                        <Border />
                        <Tit>
-                          안내사항 <Con> 프로덕트 안내사항입니다</Con>
+                          안내사항 <Con> 여기에 안내사항</Con>
                        </Tit>
 
                        <Border />
@@ -105,7 +115,7 @@ const Detail = (props) => {
                        <Order>
                           <div>
                              <Total>
-                                총 상품금액 :<Bold> 10,000</Bold>원
+                                총 상품금액 :<Bold> </Bold>원
                              </Total>
                              <Ho>
                                 <IconPoint>적립</IconPoint>로그인
@@ -284,6 +294,7 @@ const Strong = styled.p`
   display: flex;
   justify-content: left;
   align-items: left;
+  margin-top: 100px;
 `;
 
 const InfoSection = styled.section`
