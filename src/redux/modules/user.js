@@ -52,14 +52,14 @@ return { type: REMOVE, widget };
 export const signUpDB = (formData) => {
     return async function (dispatch) {   
         await axios
-    .post('http://localhost:5001/list',formData)
+    .post('http://13.125.151.93/user/signup',formData)
     .then((response) => {
         console.log(response)
        window.alert("회원가입이 완료되었습니다.")
 
     })
     .catch((error) => {
-       console.log(error)
+       console.log(error.response.data)
         window.alert("에러!")
    })
         console.log(formData)
@@ -70,14 +70,30 @@ export const loginDB = (formData) => {
     return async function (dispatch) {   
         console.log(formData)
         await axios
-    .post('http://localhost:5001/list',formData)
+    .post('http://13.125.151.93/user/login',formData)
     .then((response) => {
         console.log(response)
         window.alert(`${formData.loginId}님 환영합니다!`)
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.jwt);
     })
     .catch((error) => {
        console.log(error)
+        window.alert(error.response.data.message)
+   })
+    };
+};
+
+export const idCheckDB = (formData) => {
+    return async function (dispatch) {   
+        console.log(formData)
+        await axios
+    .post('http://13.125.151.93/user/idcheck',formData)
+    .then((response) => {
+        console.log(response)
+        window.alert("사용가능한 아이디 입니다!")
+    })
+    .catch((error) => {
+       console.log(error.response.data.message)
         window.alert("에러!")
    })
     };

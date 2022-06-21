@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { signUpDB } from "../redux/modules/user";
+import { signUpDB, idCheckDB} from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
 import DaumPostcode from 'react-daum-postcode';
 
@@ -17,19 +17,32 @@ const SignUpPage = () => {
  
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // 아이디 확인
   const [id, SetId] = useState("");
+  // 이름 확인
   const [nickname, SetNickname] = useState("");
+  // 패스워드 확인
   const [password, SetPassword] = useState("");
+  // 패스워드 다시 확인
   const [passwordCheck, SetPasswordCheck] = useState("");
+  // 주소 확인
   const [address, SetAddress] = useState("");
   const [openPostcode, setOpenPostcode] = useState(false);
 
-  const id_ref = React.useRef(null);
-  const nickname_ref = React.useRef(null);
-  const password_ref = React.useRef(null);
-  const passwordCheck_ref = React.useRef(null);
-  const address_ref = React.useRef(null);
+  // 아이디 유효성 검사
+  const [isEmail, setIsEmail] = useState(false)
+  // 아이디 중복 검사
+  const [overlapEmail,setOverlapEmail] = useState(false)
+  // 패스워드 유효성 검사
+  const [isPassword, setIsPassword] = useState(false)
+  // 패스워드 확인 검사
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
+  
 
+
+
+  // 카카오 주소 API
   const handle = {
     // 버튼 클릭 이벤트
     clickButton: () => {
@@ -62,10 +75,12 @@ const SignUpPage = () => {
     SetAddress(e.target.value);
   };
 
+  // 보낼 데이터
   let formRegister = {
-    loginId: id,
-    password: password,
-    nickname: nickname,
+    "loginId": id,
+    "password": password,
+    "passwordcheck": passwordCheck,
+    "nickname": nickname
   };
   // 성공함
   // const signUp = async () => {
@@ -91,6 +106,17 @@ const SignUpPage = () => {
     navigate("/");
   }
 
+  let idForm = {
+    "loginId": id,
+  }
+  function idCheck() {
+    dispatch(idCheckDB(idForm))
+  }
+
+  // const IdOverlapCheck = async () => {
+  //   await axios
+  // }
+
   return (
     <>
       <Container>
@@ -101,7 +127,7 @@ const SignUpPage = () => {
             <Title>아이디</Title>
             <Sub>
               <Input
-                ref={id_ref}
+                maxLength={16}
                 name="loginId"
                 onChange={OnChangeId}
                 type="text"
@@ -111,7 +137,9 @@ const SignUpPage = () => {
               />
             </Sub>
             <Sub>
-              <BtnOutline>
+              <BtnOutline
+                onClick={idCheck}
+              >
                 <BtnTitle>중복확인</BtnTitle>
               </BtnOutline>
             </Sub>
@@ -129,7 +157,6 @@ const SignUpPage = () => {
             <Title>닉네임</Title>
             <Sub>
               <Input
-                ref={nickname_ref}
                 name="nickname"
                 onChange={OnChangeNickname}
                 type="text"
@@ -145,7 +172,6 @@ const SignUpPage = () => {
             <Title>비밀번호</Title>
             <Sub>
               <Input
-                ref={password_ref}
                 name="password"
                 onChange={OnChangePassword}
                 type="password"
@@ -158,7 +184,6 @@ const SignUpPage = () => {
             <Title>비밀번호확인</Title>
             <Sub>
               <Input
-                ref={passwordCheck_ref}
                 onChange={OnChangePasswordCheck}
                 type="password"
                 placeholder="비밀번호를 한번 더 입력해주세요"

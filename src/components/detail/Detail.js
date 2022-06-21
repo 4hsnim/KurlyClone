@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState }  from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import{ useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useParams } from "react-router";
 
+import { useParams,useLocation } from "react-router";
+import detail, {getDetail} from '../../redux/modules/detail'
+import { BiMinus, BiPlus } from 'react-icons/bi';
 
 const Detail = (props) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -14,15 +17,28 @@ const Detail = (props) => {
 
   const min = () => {
     if (number <= 1) {
-      window.alert("최소주문수량은 1개입니다!");
+      window.alert("최소 주문 수량은 1개입니다.");
     } else setNumber(parseInt(number) - 1);
   };
 
   const max = () => {
-    setNumber(parseInt(number) + 1);
+    if(number >= 10){
+      window.alert("최대 주문 수량은 10개입니다.")
+    } else  setNumber(parseInt(number) + 1);
   };
 
+  React.useEffect (() => {
+    dispatch(getDetail())
+  },[])
 
+  const detail_Info = useSelector((state) => state.detail.detailInfo)
+  console.log(detail_Info)
+
+
+  const addCart = () => {
+    window.alert('장바구니에 상품을 담았습니다.');
+    navigate('/');
+  }
 
 
   return (
@@ -43,16 +59,16 @@ const Detail = (props) => {
                           <Wrapper>
                              <Strong>
                                 <span>브랜드네임</span>
-                                프로덕트 이름
+                                여기에 타이틀내용
                              </Strong>
                           </Wrapper>
-                          <Content>프로덕트 인포</Content>
+                          <Content>여기에 컨텐츠내용</Content>
                        </InfoSection>
 
                        <div>
                           <Price>
                              <Num>
-                                10,000 <Won>원</Won>
+                             여기에 얼마인지<Won>원</Won>
                              </Num>
                           </Price>
 
@@ -61,7 +77,7 @@ const Detail = (props) => {
 
                        <Border />
                        <Tit>
-                          안내사항 <Con> 프로덕트 안내사항입니다</Con>
+                          안내사항 <Con> 여기에 안내사항</Con>
                        </Tit>
 
                        <Border />
@@ -69,17 +85,28 @@ const Detail = (props) => {
                           구매수량
                           <SectionBtn>
                              <Box>
-                                <BtnNum onClick={min}>
-                                   <i className="fa-solid fa-minus"></i>
-                                </BtnNum>
+                                <BiMinus
+                                   onClick={min}
+                                   style={{
+                                      width: 20,
+                                      height: 20,
+                                      paddingLeft: 5,
+                                   }}
+                                />
+
                                 <label htmlFor="1">
                                    <Input type="number" id="1" />
                                    {number}
                                 </label>
 
-                                <BtnNum onClick={max}>
-                                   <i className="fa-solid fa-plus"></i>
-                                </BtnNum>
+                                <BiPlus
+                                   onClick={max}
+                                   style={{
+                                      width: 20,
+                                      height: 20,
+                                      paddingRight: 5,
+                                   }}
+                                />
                              </Box>
                           </SectionBtn>
                        </Tit>
@@ -88,7 +115,7 @@ const Detail = (props) => {
                        <Order>
                           <div>
                              <Total>
-                                총 상품금액 :<Bold> 10,000</Bold>원
+                                총 상품금액 :<Bold> </Bold>원
                              </Total>
                              <Ho>
                                 <IconPoint>적립</IconPoint>로그인
@@ -99,9 +126,9 @@ const Detail = (props) => {
                                    <LikeBtn />
                                    <Alert />
 
-                                   <Reg>
-                                      <Btn>장바구니 담기</Btn>
-                                   </Reg>
+                                   <BtnContainer>
+                                      <Btn onClick={addCart}>장바구니 담기</Btn>
+                                   </BtnContainer>
                                 </WrapIcon>
                              </Point>
                           </div>
@@ -267,6 +294,7 @@ const Strong = styled.p`
   display: flex;
   justify-content: left;
   align-items: left;
+  margin-top: 100px;
 `;
 
 const InfoSection = styled.section`
@@ -287,15 +315,15 @@ const Content = styled.div`
   color: #999;
 `;
 
-const Reg = styled.div`
-  display: flex;
-  width: 280px;
-  height: 54px;
-  border-radius: 3px;
-  font-size: 0;
-  text-align: center;
-  background-color: #5f0080;
-  margin-top: 20px;
+const BtnContainer = styled.div`
+   display: flex;
+   width: 280px;
+   height: 54px;
+   border-radius: 3px;
+   font-size: 0;
+   text-align: center;
+   background-color: #5f0080;
+   margin-top: 20px;
 `;
 
 const Btn = styled.button`
