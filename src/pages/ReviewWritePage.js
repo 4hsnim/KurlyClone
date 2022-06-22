@@ -1,19 +1,89 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db, storage } from '../firebase';
+import axios from 'axios';
 
+import {
+   collection,
+   doc,
+   getDocs,
+   addDoc,
+   updateDoc,
+   deleteDoc,
+} from 'firebase/firestore';
+import { TbPlus } from 'react-icons/tb';
 const ReviewWritePage = () => {
+   const token = localStorage.getItem('jwt');
    const navigate = useNavigate();
+   const dispatch = useDispatch();
+   
+   const [is_login, setIsLogin] = useState(true);
+   const title_ref = React.useRef(null);
+   const content_ref = React.useRef(null);
+   const file_ref = React.useState(null);
+   const file_link_ref = React.useRef(null);
+   const [imageSrc, setImageSrc] = React.useState('');
 
-   const goReview = () => {
-         window.alert('후기 등록이 완료되었습니다.')
-         navigate('/');
-   }
+   const [review, setReveiw] = React.useState({
+      title: '',
+      content: '',
+   });
+
+   const encodeFileToBase64 = (fileBlob) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(fileBlob);
+      return new Promise((resolve) => {
+         reader.onload = () => {
+            setImageSrc(reader.result);
+            resolve();
+         };
+      });
+   };
+
+   const addReviewAxios = async (e) => {
+ 
+      const uploaded_file = await uploadBytes(
+         ref(storage, `images/${file_ref.current.files[0].name}`),
+
+         file_ref.current.files[0]
+      );
+
+     
+      const file_url = await getDownloadURL(uploaded_file.ref);
+      // console.log(file_url);
+      file_link_ref.current = { url: file_url };
+      
+
+      axios
+         .post(
+            'http://localhost:5002/review',
+            {
+               "image": file_link_ref.current?.url,
+               "title": title_ref.current.value,
+               "content": content_ref.current.value,
+            },
+            { headers: { Authorization: `Bearer ${token}` } }
+         )
+         .then(function (response) {
+            window.alert('후기 등록이 완료되었습니다.');
+            navigate('/');
+         })
+         .catch(function (error) {
+            const msg = error.response.data.message;
+            window.alert(msg);
+         });
+         console.log('file_link_ref.current.url?', file_link_ref.current.url);
+   };   
+
+
    return (
       <>
          <Container>
             <Caption>후기 작성</Caption>
-            
+
             <Table>
                <thead>
                   <Tr>
@@ -30,9 +100,10 @@ const ReviewWritePage = () => {
                </thead>
                <tbody>
                   <Tr>
-                     <SubTitle1>제목</SubTitle1>
+                     <SubTitle1> 제목</SubTitle1>
                      <td>
                         <SubInput
+                           ref={title_ref}
                            type="text"
                            placeholder="제목을 입력해주세요"
                         />
@@ -42,6 +113,7 @@ const ReviewWritePage = () => {
                      <SubTitle2>후기작성</SubTitle2>
                      <td>
                         <SubTextarea
+                           ref={content_ref}
                            type="content"
                            placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며, 일반 식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성시 검토 후 비공개 조치될 수 있습니다. 반품/환불 문의는 1:1문의로 가능합니다. "
                         />
@@ -50,9 +122,29 @@ const ReviewWritePage = () => {
                   <Tr>
                      <SubTitle3>사진등록</SubTitle3>
                      <td>
-                        <PhotoContainer>
-                           <PhotoIcon>+</PhotoIcon>
-                        </PhotoContainer>
+                        {/* <PhotoContainer>
+                           <TbPlus 
+                              style={{
+                                 color: '#5f0080',
+                                 margin: 'auto',
+                                 width: 25,
+                                 height: 25,
+                                 position: 'relative',
+                                 top: 25
+                              }}
+                           />
+                        </PhotoContainer> */}
+                        <div className="picture">
+                           {imageSrc && (
+                              <img src={imageSrc} alt="preview-img" />
+                           )}
+                        </div>
+                        <input
+                           type="file"
+                           ref={file_ref}
+                           style={{ display: 'block', margin: 30 }}
+
+                        />
                         <PhotoTxt>
                            구매한 상품이 아니거나 캡쳐 사진을 첨부할 경우,
                            통보없이 삭제 및 적립 혜택이 취소됩니다.
@@ -61,7 +153,7 @@ const ReviewWritePage = () => {
                   </Tr>
                </tbody>
             </Table>
-            <Btn onClick={goReview}>
+            <Btn onClick={addReviewAxios}>
                <BtnTitle>등록하기</BtnTitle>
             </Btn>
          </Container>

@@ -8,23 +8,37 @@ import detail, {getDetail} from '../../redux/modules/detail'
 import { BiMinus, BiPlus } from 'react-icons/bi';
 
 const Detail = (props) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const params = useParams();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const params = useParams();
+    const [num, setNum] = useState(1);
+    const [price, setPrice] = useState();
+    // const [sum, setSum] = useState();
+    const sum = price * num; 
+    const total = sum.toLocaleString('ko-KR');
+ const ItemList = [
+    {
+       brand: '벨지오이오소',
+       title: '모짜렐라로그',
+       url: 'https://img-cf.kurly.com/banner/main/pc/img/c02c5036-df56-4cc8-b2b7-6e997e644008',
+       content: '덩어리째로 만나보는 생 모짜렐라의 신선함',
+       price: '15,900',
+       delivery: '샛별배송/택배배송',
+       sum: '15900'
+    },
+ ];
 
-
-  const [number, setNumber] = useState(1);
 
   const min = () => {
-    if (number <= 1) {
+    if (num <= 1) {
       window.alert("최소 주문 수량은 1개입니다.");
-    } else setNumber(parseInt(number) - 1);
+    } else setNum(parseInt(num) - 1);
   };
 
   const max = () => {
-    if(number >= 10){
+    if(num >= 10){
       window.alert("최대 주문 수량은 10개입니다.")
-    } else  setNumber(parseInt(number) + 1);
+    } else  setNum(parseInt(num) + 1);
   };
 
   React.useEffect (() => {
@@ -43,120 +57,111 @@ const Detail = (props) => {
 
   return (
      <>
-        <Container>
            <Section>
-              <Div>
-                 <Img>
-                    <ImgSrc
-                       src="https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg"
-                       alt=""
-                    />
-                 </Img>
+      {ItemList.map((val,i) => {
+        return (
+           <Article>
+              <ImgContainer>
+                 <Img
+                    src="https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg"
+                    alt=""
+                 />
+              </ImgContainer>
 
-                 <Fix>
-                    <Wrap>
-                       <InfoSection>
-                          <Wrapper>
-                             <Strong>
-                                <span>브랜드네임</span>
-                                여기에 타이틀내용
-                             </Strong>
-                          </Wrapper>
-                          <Content>여기에 컨텐츠내용</Content>
-                       </InfoSection>
+              <Fix>
+                 <Wrap>
+                    <InfoSection>
+                       <BrandName>
+                     [{val.brand}] {val.title}
+                       </BrandName>
+                       <Content>
+                        {val.content}
+                       </Content>
+                    </InfoSection>
 
+                    <Price>
+                       <Num>
+                        {val.price}
+                          <Won>원</Won>
+                       </Num>
+                    </Price>
+
+                    <P>로그인 후, 회원할인가와 적립혜택이 제공됩니다.</P>
+
+                    <Border />
+                    <Description>
+                       배송구분 <Txt> {val.delivery}</Txt>
+                    </Description>
+
+                    <Border />
+                    <Description>
+                       구매수량
+                       <SectionBtn>
+                          <Box>
+                             <BiMinus
+                                onClick={min}
+                                style={{
+                                   width: 20,
+                                   height: 20,
+                                   paddingLeft: 5,
+                                }}
+                             />
+
+                             <label htmlFor="1">
+                                <Input type="number" id="1" />
+                                {num}
+                             </label>
+
+                             <BiPlus
+                                onClick={max}
+                                style={{
+                                   width: 20,
+                                   height: 20,
+                                   paddingRight: 5,
+                                }}
+                             />
+                          </Box>
+                       </SectionBtn>
+                    </Description>
+                    <Border />
+
+                    <Order>
                        <div>
-                          <Price>
-                             <Num>
-                             여기에 얼마인지<Won>원</Won>
-                             </Num>
-                          </Price>
+                          <Total>
+                             총 상품금액 :<TotalTxt>{val.sum}</TotalTxt>원
+                          </Total>
+                          <IconPoint>적립</IconPoint>로그인 후,회원할인가와
+                          적립혜택 적용
+                          <Point>
+                             <WrapIcon>
+                                <LikeBtn />
+                                <Alert />
 
-                          <P>로그인 후, 회원할인가와 적립혜택이 제공됩니다.</P>
+                                <BtnContainer>
+                                   <Btn onClick={addCart}>장바구니 담기</Btn>
+                                </BtnContainer>
+                             </WrapIcon>
+                          </Point>
                        </div>
-
-                       <Border />
-                       <Tit>
-                          안내사항 <Con> 여기에 안내사항</Con>
-                       </Tit>
-
-                       <Border />
-                       <Tit>
-                          구매수량
-                          <SectionBtn>
-                             <Box>
-                                <BiMinus
-                                   onClick={min}
-                                   style={{
-                                      width: 20,
-                                      height: 20,
-                                      paddingLeft: 5,
-                                   }}
-                                />
-
-                                <label htmlFor="1">
-                                   <Input type="number" id="1" />
-                                   {number}
-                                </label>
-
-                                <BiPlus
-                                   onClick={max}
-                                   style={{
-                                      width: 20,
-                                      height: 20,
-                                      paddingRight: 5,
-                                   }}
-                                />
-                             </Box>
-                          </SectionBtn>
-                       </Tit>
-                       <Border />
-
-                       <Order>
-                          <div>
-                             <Total>
-                                총 상품금액 :<Bold> </Bold>원
-                             </Total>
-                             <Ho>
-                                <IconPoint>적립</IconPoint>로그인
-                                후,회원할인가와 적립혜택 적용
-                             </Ho>
-                             <Point>
-                                <WrapIcon>
-                                   <LikeBtn />
-                                   <Alert />
-
-                                   <BtnContainer>
-                                      <Btn onClick={addCart}>장바구니 담기</Btn>
-                                   </BtnContainer>
-                                </WrapIcon>
-                             </Point>
-                          </div>
-                       </Order>
-                    </Wrap>
-                 </Fix>
-              </Div>
+                    </Order>
+                 </Wrap>
+              </Fix>
+           </Article>
+        );
+      })}
            </Section>
-        </Container>
+
      </>
   );
 };
 
 export default Detail;
 
-const Container = styled.div`
-  margin: 20px auto;
-`;
 const Section = styled.section`
   width: 1050px;
-  margin: 20px auto;
+  margin: 50px auto;
   padding-top: 20px;
   display: flex;
-`;
-
-const Ho = styled.tr`
-  /* margin-right: 50px; */
-  padding: 0 5px;
 `;
 
 const IconPoint = styled.div`
@@ -178,9 +183,21 @@ const Total = styled.tr`
   font-weight: 700;
   font-size: 15px;
   margin-bottom: 10px;
-
   display: flex;
   justify-content: right;
+`;
+
+const TotalTxt = styled.span`
+   display: flex;
+   justify-content: right;
+   font-weight: 900;
+   font-size: 30px;
+   line-height: 10px;
+   margin-right: 2px;
+   display: flex;
+   color: #333;
+   margin-bottom: 10px;
+   margin-left: 15px;
 `;
 
 const Point = styled.span`
@@ -191,24 +208,13 @@ const Point = styled.span`
   margin-left: 120px;
 `;
 
-const Bold = styled.span`
-  display: flex;
-  justify-content: right;
-  font-weight: 900;
-  font-size: 30px;
-  line-height: 10px;
-  margin-right: 2px;
-  display: flex;
-  color: #333;
-  margin-bottom: 10px;
-  margin-left: 15px;
-`;
 
-const Div = styled.div`
-  padding: 30px 0 20px;
-  color: #333;
-  letter-spacing: 0;
-  display: flex;
+
+const Article = styled.div`
+   padding: 30px 0 20px;
+   color: #333;
+   letter-spacing: 0;
+   display: flex;
 `;
 
 const Order = styled.table`
@@ -217,14 +223,14 @@ const Order = styled.table`
   margin-right: 210px;
 `;
 
-const Tit = styled.span`
+const Description = styled.span`
   display: flex;
   width: 900px;
   font-size: 14px;
   color: #666;
 `;
 
-const Con = styled.span`
+const Txt = styled.span`
   color: #333;
   letter-spacing: -0.5px;
   font-size: 15px;
@@ -246,10 +252,6 @@ const WrapIcon = styled.div`
   margin-top: 20px;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-`;
-
 const Price = styled.div`
   width: 560px;
 `;
@@ -265,11 +267,18 @@ const Won = styled.span`
   font-size: 20px;
 `;
 
-const Img = styled.div`
-  padding: 0 40px 0 0;
+const ImgContainer = styled.div`
+  margin: 20px;
+  padding: 50px auto;
   display: flex;
   width: 430px;
   height: 552px;
+`;
+
+const Img = styled.img`
+   width: 430px;
+   height: 552px;
+   max-width: 100%;
 `;
 
 const P = styled.p`
@@ -280,21 +289,15 @@ const P = styled.p`
   letter-spacing: 0;
 `;
 
-const ImgSrc = styled.img`
-  width: 430px;
-  height: 552px;
-  max-width: 100%;
-`;
-
-const Strong = styled.p`
-  font-weight: 500;
-  font-size: 24px;
-  color: #333;
-  margin-right: 219px;
-  display: flex;
-  justify-content: left;
-  align-items: left;
-  margin-top: 100px;
+const BrandName = styled.p`
+   font-weight: 500;
+   font-size: 24px;
+   color: #333;
+   margin-right: 219px;
+   display: flex;
+   justify-content: left;
+   align-items: left;
+   margin-top: 100px;
 `;
 
 const InfoSection = styled.section`

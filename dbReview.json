@@ -1,0 +1,22 @@
+{
+  "review": [
+    {
+      "id": 1,
+      "title": "[콜린스그린] 써니피에스타",
+      "content": "건강한맛 믿고 먹긴하는데 비싸서리 ㅠㅠ"
+    },
+    {
+      "id": 2,
+      "title": "추천 과일과 야채쥬스는 보통 맛이 별론데 이건",
+      "content": "이건 아주 맛있고 빛깔도 너무 예뻐요"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/sparta-react-marketkurly.appspot.com/o/images%2Fcolor.jpg?alt=media&token=8ec96c6d-b706-4122-b899-f4ba5c33db00",
+      "title": "test",
+      "content": "test",
+      "id": 3
+    }
+
+
+  ]
+}
