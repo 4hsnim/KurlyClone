@@ -2,31 +2,22 @@ import React, { useState }  from "react";
 import { useDispatch, useSelector } from "react-redux";
 import{ useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
 import { useParams,useLocation } from "react-router";
+import axios from "axios";
+
 import detail, {getDetail} from '../../redux/modules/detail'
 import { BiMinus, BiPlus } from 'react-icons/bi';
 
 const Detail = (props) => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const params = useParams();
-    const [num, setNum] = useState(1);
-    const [price, setPrice] = useState();
-    // const [sum, setSum] = useState();
-    const sum = price * num; 
-    const total = sum.toLocaleString('ko-KR');
- const ItemList = [
-    {
-       brand: '벨지오이오소',
-       title: '모짜렐라로그',
-       url: 'https://img-cf.kurly.com/banner/main/pc/img/c02c5036-df56-4cc8-b2b7-6e997e644008',
-       content: '덩어리째로 만나보는 생 모짜렐라의 신선함',
-       price: '15,900',
-       delivery: '샛별배송/택배배송',
-       sum: '15900'
-    },
- ];
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // let {postId} = useParams()
+
+
+  const [data, setData] = useState(null)
+  const [number, setNumber] = useState(1);
+
 
 
   const min = () => {
@@ -41,114 +32,125 @@ const Detail = (props) => {
     } else  setNum(parseInt(num) + 1);
   };
 
-  React.useEffect (() => {
-    dispatch(getDetail())
-  },[])
-
-  const detail_Info = useSelector((state) => state.detail.detailInfo)
-  console.log(detail_Info)
-
-
   const addCart = () => {
     window.alert('장바구니에 상품을 담았습니다.');
     navigate('/');
   }
 
+  React.useEffect( () => {
+     axios
+     .get("http://localhost:5001/detail") 
+     .then((response) => {
+      setData(response.data);
+       console.log(response.data);
+     })
+     .catch((response) => {
+       console.log(response);
+     });
+ }, []);
+ function coma(price) {
+  return parseInt(price).toLocaleString()
+ }
 
   return (
      <>
            <Section>
-      {ItemList.map((val,i) => {
-        return (
-           <Article>
-              <ImgContainer>
-                 <Img
-                    src="https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg"
-                    alt=""
-                 />
-              </ImgContainer>
 
-              <Fix>
-                 <Wrap>
-                    <InfoSection>
-                       <BrandName>
-                     [{val.brand}] {val.title}
-                       </BrandName>
-                       <Content>
-                        {val.content}
-                       </Content>
-                    </InfoSection>
+              <Div>
+                 <Img>
+                    <ImgSrc
+                       src={data&&data[0].img}
+                       alt=""
+                    />
+                 </Img>
 
-                    <Price>
-                       <Num>
-                        {val.price}
-                          <Won>원</Won>
-                       </Num>
-                    </Price>
+                 <Fix>
+                    <Wrap>
+                       <InfoSection>
+                          <Wrapper>
+                             <Strong>
+                                
+                                {data&&data[0].title}
+                             </Strong>
+                          </Wrapper>
+                          <Content>{data&&data[0].content}</Content>
+                       </InfoSection>
 
-                    <P>로그인 후, 회원할인가와 적립혜택이 제공됩니다.</P>
-
-                    <Border />
-                    <Description>
-                       배송구분 <Txt> {val.delivery}</Txt>
-                    </Description>
-
-                    <Border />
-                    <Description>
-                       구매수량
-                       <SectionBtn>
-                          <Box>
-                             <BiMinus
-                                onClick={min}
-                                style={{
-                                   width: 20,
-                                   height: 20,
-                                   paddingLeft: 5,
-                                }}
-                             />
-
-                             <label htmlFor="1">
-                                <Input type="number" id="1" />
-                                {num}
-                             </label>
-
-                             <BiPlus
-                                onClick={max}
-                                style={{
-                                   width: 20,
-                                   height: 20,
-                                   paddingRight: 5,
-                                }}
-                             />
-                          </Box>
-                       </SectionBtn>
-                    </Description>
-                    <Border />
-
-                    <Order>
                        <div>
-                          <Total>
-                             총 상품금액 :<TotalTxt>{val.sum}</TotalTxt>원
-                          </Total>
-                          <IconPoint>적립</IconPoint>로그인 후,회원할인가와
-                          적립혜택 적용
-                          <Point>
-                             <WrapIcon>
-                                <LikeBtn />
-                                <Alert />
+                          <Price>
+                             <Num>
+                             {coma(data&&data[0].price)}<Won>원</Won>
+                             </Num>
+                          </Price>
 
-                                <BtnContainer>
-                                   <Btn onClick={addCart}>장바구니 담기</Btn>
-                                </BtnContainer>
-                             </WrapIcon>
-                          </Point>
+                          <P>로그인 후, 회원할인가와 적립혜택이 제공됩니다.</P>
                        </div>
-                    </Order>
-                 </Wrap>
-              </Fix>
-           </Article>
-        );
-      })}
+
+                       <Border />
+                       <Tit>
+                          안내사항 <Con>{data&&data[0].notice}</Con>
+                       </Tit>
+
+                       <Border />
+                       <Tit>
+                          구매수량
+                          <SectionBtn>
+                             <Box>
+                                <BiMinus
+                                   onClick={min}
+                                   style={{
+                                      width: 20,
+                                      height: 20,
+                                      paddingLeft: 5,
+                                   }}
+                                />
+
+                                <label htmlFor="1">
+                                   <Input type="number" id="1" />
+                                   {number}
+                                </label>
+
+                                <BiPlus
+                                   onClick={max}
+                                   style={{
+                                      width: 20,
+                                      height: 20,
+                                      paddingRight: 5,
+                                   }}
+                                />
+                             </Box>
+                          </SectionBtn>
+                       </Tit>
+                       <Border />
+
+                       <Order>
+                          <div>
+                             <Total>
+                                총 상품금액 :
+                                <Bold>
+                                  {coma(data&&data[0].price * number)}
+                                </Bold>원
+                             </Total>
+                             <Ho>
+                                <IconPoint>적립</IconPoint>로그인
+                                후,회원할인가와 적립혜택 적용
+                             </Ho>
+                             <Point>
+                                <WrapIcon>
+                                   <LikeBtn />
+                                   <Alert />
+
+                                   <BtnContainer>
+                                      <Btn onClick={addCart}>장바구니 담기</Btn>
+                                   </BtnContainer>
+                                </WrapIcon>
+                             </Point>
+                          </div>
+                       </Order>
+                    </Wrap>
+                 </Fix>
+              </Div>
+
            </Section>
 
      </>

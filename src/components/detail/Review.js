@@ -4,18 +4,18 @@ import axios from 'axios';
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {useNavigate, useParams} from 'react-router-dom';
-/*COMPONENTS*/
-import Comment from './Comment';
 
-const Review = () => {
+import {useNavigate} from 'react-router-dom'
+import axios from "axios";
+
+const Review = ({ productId, name }) => {
+
    const navigate = useNavigate();
    const [itemList, setItemList] = useState([]);
    const [commentId, setcommentId] = useState(null);
    const [modal, setModal] = useState(false);
 
-     let { productId } =useParams();
-
+   const token = localStorage.getItem("token");
 
    const reviewList = [
 
@@ -74,24 +74,19 @@ const Review = () => {
    ); 
  }
 
-   React.useEffect(() => {
-       getItemListAxios();
-    }, []);
+ const loginCheckDB = () => {
+   if(token){
+      navigate('/detail/:productId/write')
+   }
+   else {
+      alert('로그인을 해주세요!')
+   }
 
-   const getItemListAxios = () => {
-   
-   axios.get('http://15.164.164.17/products/'+ productId).then((response) => {
-      console.log('response?', response);
-      // console.log('response?', response.data.boards);
-   });
-   // .catch(function (error) {
-   //    console.log(error.response.data.,msg);
-   // });
-
-};
- const goComment = () => {
-   navigate('/detail/:productId/write')
  }
+
+//  const loginCheckDB = () => {
+//    navigate('/detail/:productId/write')
+//  }
 
   return (
      <>
@@ -258,7 +253,7 @@ const Review = () => {
            </div>
         </Container>
         <WriteBtnContainer>
-           <WriteBtn onClick={goComment}>후기쓰기</WriteBtn>
+           <WriteBtn onClick={loginCheckDB}>후기쓰기</WriteBtn>
         </WriteBtnContainer>
      </>
   );

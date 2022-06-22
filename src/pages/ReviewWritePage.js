@@ -18,6 +18,7 @@ import { TbPlus } from 'react-icons/tb';
 const ReviewWritePage = () => {
    const token = localStorage.getItem('jwt');
    const navigate = useNavigate();
+
    const dispatch = useDispatch();
    
    const [is_login, setIsLogin] = useState(true);
@@ -79,6 +80,7 @@ const ReviewWritePage = () => {
    };   
 
 
+
    return (
       <>
          <Container>
@@ -122,6 +124,7 @@ const ReviewWritePage = () => {
                   <Tr>
                      <SubTitle3>사진등록</SubTitle3>
                      <td>
+
                         {/* <PhotoContainer>
                            <TbPlus 
                               style={{
@@ -145,6 +148,7 @@ const ReviewWritePage = () => {
                            style={{ display: 'block', margin: 30 }}
 
                         />
+
                         <PhotoTxt>
                            구매한 상품이 아니거나 캡쳐 사진을 첨부할 경우,
                            통보없이 삭제 및 적립 혜택이 취소됩니다.
@@ -190,6 +194,10 @@ const Img = styled.img`
    margin: 20px;
 
 `;
+
+const InputFile = styled.input`
+   
+`
 
 const Tr = styled.tr`
    border-bottom: 1px solid #ddd;
