@@ -22,8 +22,9 @@ const Detail = (props) => {
        title: '모짜렐라로그',
        url: 'https://img-cf.kurly.com/banner/main/pc/img/c02c5036-df56-4cc8-b2b7-6e997e644008',
        content: '덩어리째로 만나보는 생 모짜렐라의 신선함',
-       price: 15900,
+       price: '15,900',
        delivery: '샛별배송/택배배송',
+       sum: '15900'
     },
  ];
 
@@ -71,14 +72,16 @@ const Detail = (props) => {
                  <Wrap>
                     <InfoSection>
                        <BrandName>
-                          {ItemList.brand} {ItemList.title}
+                     [{val.brand}] {val.title}
                        </BrandName>
-                       <Content>{ItemList.content}</Content>
+                       <Content>
+                        {val.content}
+                       </Content>
                     </InfoSection>
 
                     <Price>
                        <Num>
-                          {ItemList.price}
+                        {val.price}
                           <Won>원</Won>
                        </Num>
                     </Price>
@@ -87,7 +90,7 @@ const Detail = (props) => {
 
                     <Border />
                     <Description>
-                       배송구분 <Txt> 샛별배송/택배배송</Txt>
+                       배송구분 <Txt> {val.delivery}</Txt>
                     </Description>
 
                     <Border />
@@ -125,7 +128,7 @@ const Detail = (props) => {
                     <Order>
                        <div>
                           <Total>
-                             총 상품금액 :<TotalTxt>{total}</TotalTxt>원
+                             총 상품금액 :<TotalTxt>{val.sum}</TotalTxt>원
                           </Total>
                           <IconPoint>적립</IconPoint>로그인 후,회원할인가와
                           적립혜택 적용
