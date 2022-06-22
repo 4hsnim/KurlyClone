@@ -61,46 +61,6 @@ const MainPage = () => {
       },
    ];
    
-
-   const Array = [
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1488949996597l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
-      },
-   ]; 
-
    return (
       <>
          <Section>
@@ -129,6 +89,7 @@ const MainPage = () => {
                               />
                               <ImgBox>
 
+
                               <ProductImg
                                  src={val.imgUrl}
                                  onClick={() => {
@@ -154,6 +115,7 @@ const MainPage = () => {
                </Carousel>
                <Img src="https://img-cf.kurly.com/banner/random-band/pc/img/9a8968a6-bce6-498a-b2ad-35199762ff1c" />
             </CarouselBox>
+
          </Section2>
       </>
    );

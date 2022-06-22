@@ -99,6 +99,6 @@ const productSlice = createSlice({
     }
 })
 
-console.log(productSlice)
+// console.log(productSlice)
 export const productActions = productSlice.actions
 export default productSlice.reducer
