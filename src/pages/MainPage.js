@@ -6,7 +6,6 @@ import {useNavigate} from 'react-router-dom';
 import {getPosts, loadProductDB} from '../redux/modules/post'
 import { useDispatch, useSelector } from 'react-redux';
 import  {getposts} from '../redux/modules/post'
-import {useNavigate} from 'react-router-dom'
 
 
 
