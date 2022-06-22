@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import {getPosts, loadProductDB} from '../redux/modules/post'
 import { useDispatch, useSelector } from 'react-redux';
 import  {getposts} from '../redux/modules/post'
-import {useNavigate} from 'react-router-dom'
+
 
 
 
@@ -31,6 +31,10 @@ const MainPage = () => {
    },[])
    const product_list = useSelector((state)=> state.post.posts)
    console.log(product_list)
+
+   function coma(price) {
+      return parseInt(price).toLocaleString()
+     }
 
 
    const bannerImg = [
@@ -57,46 +61,6 @@ const MainPage = () => {
       },
    ];
    
-
-   const Array = [
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1488949996597l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1452154403699l0.jpg',
-      },
-      {
-         url: 'https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg',
-      },
-   ]; 
-
    return (
       <>
          <Section>
@@ -125,6 +89,7 @@ const MainPage = () => {
                               />
                               <ImgBox>
 
+
                               <ProductImg
                                  src={val.imgUrl}
                                  onClick={() => {
@@ -138,8 +103,12 @@ const MainPage = () => {
                                     height: '320px',
                                  }}
                               />
+                              <Title>{val.title}</Title>
+                              <Price>{coma(val.price)}원</Price>
+
                            </ImgBox>
                         </Carousel.Item>
+                        
                      );
                   })}
 
@@ -147,38 +116,6 @@ const MainPage = () => {
                <Img src="https://img-cf.kurly.com/banner/random-band/pc/img/9a8968a6-bce6-498a-b2ad-35199762ff1c" />
             </CarouselBox>
 
-            <CarouselBox>
-               <CarouselTitle>놓치면 후회할 가격</CarouselTitle>
-               <Carousel
-                  rows={1}
-                  cols={4}
-                  gap={1}
-                  style={{ position: 'relative' }}
-               >
-                  {Array.map((val, i) => {
-                     return (
-                        <Carousel.Item key={i}>
-                           <CartBtn
-                              src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/cart_white_45_45.svg"
-                              alt="상품 카트에 담기 아이콘"
-                           />
-                           <ProductImg
-                              src={val.url}
-                              style={{
-                                 margin: '0 10px',
-                                 textAlign: 'center',
-                                 lineHeight: '200px',
-                                 width: '239px',
-                                 height: '320px',
-                              }}
-                           />
-                           {/* <span type="prev"></span> */}
-                        </Carousel.Item>
-                     );
-                  })}
-               </Carousel>
-               {/* <Img src="https://img-cf.kurly.com/banner/random-band/pc/img/f8432eab-3cb8-450f-b5c4-f8244986259f" /> */}
-            </CarouselBox>
          </Section2>
       </>
    );
@@ -235,6 +172,20 @@ const ProductImg = styled.img`
    }
 `;
 
+const Title = styled.div`
+   margin-top: 40px;
+   margin-left: 10px;
+   font-size: 15px;
+   
+`
+
+const Price = styled.div`
+   margin-top: 10px;
+   margin-left: 10px;
+   font-size: 15px;
+   font-weight: bold;
+`
+
 const Img = styled.img`
    width: 1090px;
    margin: 100px auto;
@@ -254,7 +205,7 @@ const Btn = styled.button`
 const CartBtn = styled.img`
    position: relative;
    left: 195px;
-   top: 310px;
+   top: 345px;
    z-index: 3;
 
 `

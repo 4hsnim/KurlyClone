@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from 'react-router-dom';
 import '../shared/App.css'
-
+import {db} from '../firebase';
 //페이지 import
 import MainPage from "../pages/MainPage"
 import LoginPage from "../pages/LoginPage"

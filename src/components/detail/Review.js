@@ -1,53 +1,64 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import Comment from "./Comment";
+import axios from 'axios';
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {useNavigate} from 'react-router-dom';
+
+import {useNavigate} from 'react-router-dom'
+import axios from "axios";
+
 const Review = ({ productId, name }) => {
+
    const navigate = useNavigate();
+   const [itemList, setItemList] = useState([]);
+   const [commentId, setcommentId] = useState(null);
    const [modal, setModal] = useState(false);
+
+   const token = localStorage.getItem("token");
+
    const reviewList = [
+
       {
-         boardId: 1,
-         title: '맛있음',
+         commentId: 1,
+         title: '맛있음1',
+         comment: '첫번째 냠냠',
          nickName: 'sparta123',
          date: '2022-06-10',
          helped: 0,
          view: 3,
       },
       {
-         boardId: 2,
-         title: '???',
-         content: '냠냠',
+         commentId: 2,
+         title: '맛있음2',
+         comment: '두번째 냠냠',
          nickName: 'sparta',
          date: '2022-06-10',
          helped: 0,
          view: 1,
       },
       {
-         boardId: 3,
-         title: '맛있음???',
-         content: '냠냠',
+         commentId: 3,
+         title: '맛있음3',
+         comment: '세번째 냠냠',
          nickName: 'spar',
          date: '2022-06-10',
          helped: 0,
          view: 4,
       },
       {
-         boardId: 4,
-         title: '맛있음...',
-         content: '냠냠',
+         commentId: 4,
+         title: '맛있음4',
+         comment: '네번째 냠냠',
          nickName: 'spa',
          date: '2022-06-10',
          helped: 0,
          view: 5,
       },
       {
-         boardId: 5,
-         title: '맛있음!!!',
-         content: '냠냠',
+         commentId: 5,
+         title: '맛있음5',
+         comment: '다섯번째 냠냠',
          nickName: 'sparta123',
          date: '2022-06-10',
          helped: 0,
@@ -57,16 +68,25 @@ const Review = ({ productId, name }) => {
 
  const Modal = () =>{
    return (
-      <ModalContainer>
-  
-            <h5>siasi</h5>
+      <ModalContainer>   
 
       </ModalContainer>
    ); 
  }
- const goComment = () => {
-   navigate('/detail/:productId/write')
+
+ const loginCheckDB = () => {
+   if(token){
+      navigate('/detail/:productId/write')
+   }
+   else {
+      alert('로그인을 해주세요!')
+   }
+
  }
+
+//  const loginCheckDB = () => {
+//    navigate('/detail/:productId/write')
+//  }
 
   return (
      <>
@@ -157,63 +177,70 @@ const Review = ({ productId, name }) => {
                       
                        {reviewList.map((val, i) => {
                           return (
-                             <TbodyTr>
-                                <td
-                                   style={{
-                                      width: '70px',
-                                      textAlign: 'center',
-                                   }}
-                                >
-                                   {val.boardId}
-                                </td>
-                                <td
-                                   style={{
-                                      width: '592px',
-                                      textAlign: 'center',
-                                   }}
-                                >
-                                   {val.title}
-                                </td>
-                                <td></td>
-                                <td
-                                   style={{
-                                      width: '100px',
-                                      textAlign: 'left',
-                                   }}
-                                >
-                                   {val.nickName}
-                                </td>
-                                <td
-                                   style={{
-                                      width: '100px',
-                                      textAlign: 'center',
-                                   }}
-                                >
-                                   {val.date}
-                                </td>
-                                <td
-                                   style={{
-                                      width: '40px',
-                                      textAlign: 'center',
-                                   }}
-                                >
-                                   {val.helped}
-                                </td>
-                                <td
-                                   style={{
-                                      width: '80px',
-                                      textAlign: 'center',
-                                   }}
-                                >
-                                   {val.view}
-                                </td>
-                             </TbodyTr>
+                             <>
+                                <TbodyTr>
+                                   <td
+                                      style={{
+                                         width: '70px',
+                                         textAlign: 'center',
+                                      }}
+                                   >
+                                      {val.commentId}
+                                   </td>
+                                   <td
+                                      style={{
+                                         width: '592px',
+                                         textAlign: 'center',
+                                      }}
+                                   >
+                                      {val.title}
+                                   </td>
+                                   <td></td>
+                                   <td
+                                      style={{
+                                         width: '100px',
+                                         textAlign: 'left',
+                                      }}
+                                   >
+                                      {val.nickName}
+                                   </td>
+                                   <td
+                                      style={{
+                                         width: '100px',
+                                         textAlign: 'center',
+                                      }}
+                                   >
+                                      {val.date}
+                                   </td>
+                                   <td
+                                      style={{
+                                         width: '40px',
+                                         textAlign: 'center',
+                                      }}
+                                   >
+                                      {val.helped}
+                                   </td>
+                                   <td
+                                      style={{
+                                         width: '80px',
+                                         textAlign: 'center',
+                                      }}
+                                   >
+                                      {val.view}
+                                   </td>
+                                </TbodyTr>
+                          
+                                   <tr>
+                                      <td colspan={6}>
+                                         {modal ? <Modal /> : ''}
+                                      </td>
+                                   </tr>
+                           
+                             </>
                           );
                        })}
                      
-                           <tr>
-                              <td colspan={6}>{modal ? <Modal /> : ''}</td>
-                           </tr>
+                          
             
                     </Tbody>
                  </Table>
@@ -226,7 +253,7 @@ const Review = ({ productId, name }) => {
            </div>
         </Container>
         <WriteBtnContainer>
-           <WriteBtn onClick={goComment}>후기쓰기</WriteBtn>
+           <WriteBtn onClick={loginCheckDB}>후기쓰기</WriteBtn>
         </WriteBtnContainer>
      </>
   );
@@ -309,13 +336,13 @@ const WriteBtnContainer = styled.div`
    width: 100px;
    height: 40px;
    text-align: center;
-   background-color: #795b8f;
-   border: 1px solid #5f0080;
-   margin-left: 1290px;
    cursor: pointer;
+
 `;
 
 const WriteBtn = styled.button`
+   position: absolute;
+   margin: auto;
    color: #fff;
    border-style: none;
    background-color: #795b8f;
