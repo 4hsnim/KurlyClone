@@ -9,6 +9,7 @@ import detail, {getDetail} from '../../redux/modules/detail'
 import { BiMinus, BiPlus } from 'react-icons/bi';
 
 const Detail = (props) => {
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // let {postId} = useParams()
@@ -17,16 +18,18 @@ const Detail = (props) => {
   const [data, setData] = useState(null)
   const [number, setNumber] = useState(1);
 
+
+
   const min = () => {
-    if (number <= 1) {
+    if (num <= 1) {
       window.alert("최소 주문 수량은 1개입니다.");
-    } else setNumber(parseInt(number) - 1);
+    } else setNum(parseInt(num) - 1);
   };
 
   const max = () => {
-    if(number >= 10){
+    if(num >= 10){
       window.alert("최대 주문 수량은 10개입니다.")
-    } else  setNumber(parseInt(number) + 1);
+    } else  setNum(parseInt(num) + 1);
   };
 
   const addCart = () => {
@@ -51,8 +54,8 @@ const Detail = (props) => {
 
   return (
      <>
-        <Container>
            <Section>
+
               <Div>
                  <Img>
                     <ImgSrc
@@ -147,27 +150,20 @@ const Detail = (props) => {
                     </Wrap>
                  </Fix>
               </Div>
+
            </Section>
-        </Container>
+
      </>
   );
 };
 
 export default Detail;
 
-const Container = styled.div`
-  margin: 20px auto;
-`;
 const Section = styled.section`
   width: 1050px;
-  margin: 20px auto;
+  margin: 50px auto;
   padding-top: 20px;
   display: flex;
-`;
-
-const Ho = styled.tr`
-  /* margin-right: 50px; */
-  padding: 0 5px;
 `;
 
 const IconPoint = styled.div`
@@ -189,9 +185,21 @@ const Total = styled.tr`
   font-weight: 700;
   font-size: 15px;
   margin-bottom: 10px;
-
   display: flex;
   justify-content: right;
+`;
+
+const TotalTxt = styled.span`
+   display: flex;
+   justify-content: right;
+   font-weight: 900;
+   font-size: 30px;
+   line-height: 10px;
+   margin-right: 2px;
+   display: flex;
+   color: #333;
+   margin-bottom: 10px;
+   margin-left: 15px;
 `;
 
 const Point = styled.span`
@@ -202,24 +210,13 @@ const Point = styled.span`
   margin-left: 120px;
 `;
 
-const Bold = styled.span`
-  display: flex;
-  justify-content: right;
-  font-weight: 900;
-  font-size: 30px;
-  line-height: 10px;
-  margin-right: 2px;
-  display: flex;
-  color: #333;
-  margin-bottom: 10px;
-  margin-left: 15px;
-`;
 
-const Div = styled.div`
-  padding: 30px 0 20px;
-  color: #333;
-  letter-spacing: 0;
-  display: flex;
+
+const Article = styled.div`
+   padding: 30px 0 20px;
+   color: #333;
+   letter-spacing: 0;
+   display: flex;
 `;
 
 const Order = styled.table`
@@ -228,14 +225,14 @@ const Order = styled.table`
   margin-right: 210px;
 `;
 
-const Tit = styled.span`
+const Description = styled.span`
   display: flex;
   width: 900px;
   font-size: 14px;
   color: #666;
 `;
 
-const Con = styled.span`
+const Txt = styled.span`
   color: #333;
   letter-spacing: -0.5px;
   font-size: 15px;
@@ -257,10 +254,6 @@ const WrapIcon = styled.div`
   margin-top: 20px;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-`;
-
 const Price = styled.div`
   width: 560px;
 `;
@@ -276,11 +269,18 @@ const Won = styled.span`
   font-size: 20px;
 `;
 
-const Img = styled.div`
-  padding: 0 40px 0 0;
+const ImgContainer = styled.div`
+  margin: 20px;
+  padding: 50px auto;
   display: flex;
   width: 430px;
   height: 552px;
+`;
+
+const Img = styled.img`
+   width: 430px;
+   height: 552px;
+   max-width: 100%;
 `;
 
 const P = styled.p`
@@ -291,21 +291,15 @@ const P = styled.p`
   letter-spacing: 0;
 `;
 
-const ImgSrc = styled.img`
-  width: 430px;
-  height: 552px;
-  max-width: 100%;
-`;
-
-const Strong = styled.p`
-  font-weight: 500;
-  font-size: 24px;
-  color: #333;
-  margin-right: 219px;
-  display: flex;
-  justify-content: left;
-  align-items: left;
-  margin-top: 100px;
+const BrandName = styled.p`
+   font-weight: 500;
+   font-size: 24px;
+   color: #333;
+   margin-right: 219px;
+   display: flex;
+   justify-content: left;
+   align-items: left;
+   margin-top: 100px;
 `;
 
 const InfoSection = styled.section`
