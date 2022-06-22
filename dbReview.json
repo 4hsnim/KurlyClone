@@ -15,36 +15,8 @@
       "title": "test",
       "content": "test",
       "id": 3
-    },
-    {
-      "image": "https://firebasestorage.googleapis.com/v0/b/sparta-react-marketkurly.appspot.com/o/images%2Fcolor.jpg?alt=media&token=d87a97f7-6653-461b-bcd1-765c5a71a640",
-      "title": "test",
-      "content": "testttttttt",
-      "id": 4
-    },
-    {
-      "image": "https://firebasestorage.googleapis.com/v0/b/sparta-react-marketkurly.appspot.com/o/images%2Fcolor.jpg?alt=media&token=5183aaab-2a7f-4026-a605-c12422b05f50",
-      "title": "test",
-      "content": "testttttttt",
-      "id": 5
-    },
-    {
-      "image": "https://firebasestorage.googleapis.com/v0/b/sparta-react-marketkurly.appspot.com/o/images%2Fcart.png?alt=media&token=6fa228c7-8389-45c5-83aa-ca9d53f8089e",
-      "title": "tttt",
-      "content": "tttttt",
-      "id": 6
-    },
-    {
-      "image": "https://firebasestorage.googleapis.com/v0/b/sparta-react-marketkurly.appspot.com/o/images%2Fcart.png?alt=media&token=76b90e68-9e47-404c-8572-64a8ddf131f6",
-      "title": "tttt",
-      "content": "tttttt",
-      "id": 7
-    },
-    {
-      "image": "https://firebasestorage.googleapis.com/v0/b/sparta-react-marketkurly.appspot.com/o/images%2Fcart.png?alt=media&token=98b9728c-832d-42fd-aa6a-4b5d871f4163",
-      "title": "tetst",
-      "content": "teste",
-      "id": 8
     }
+
+
   ]
 }
