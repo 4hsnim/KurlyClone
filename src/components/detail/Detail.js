@@ -2,17 +2,19 @@ import React, { useState }  from "react";
 import { useDispatch, useSelector } from "react-redux";
 import{ useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
 import { useParams,useLocation } from "react-router";
+import axios from "axios";
+
 import detail, {getDetail} from '../../redux/modules/detail'
 import { BiMinus, BiPlus } from 'react-icons/bi';
 
 const Detail = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const params = useParams();
+  // let {postId} = useParams()
 
 
+  const [data, setData] = useState(null)
   const [number, setNumber] = useState(1);
 
   const min = () => {
@@ -27,19 +29,25 @@ const Detail = (props) => {
     } else  setNumber(parseInt(number) + 1);
   };
 
-  React.useEffect (() => {
-    dispatch(getDetail())
-  },[])
-
-  const detail_Info = useSelector((state) => state.detail.detailInfo)
-  console.log(detail_Info)
-
-
   const addCart = () => {
     window.alert('장바구니에 상품을 담았습니다.');
     navigate('/');
   }
 
+  React.useEffect( () => {
+     axios
+     .get("http://localhost:5001/detail") 
+     .then((response) => {
+      setData(response.data);
+       console.log(response.data);
+     })
+     .catch((response) => {
+       console.log(response);
+     });
+ }, []);
+ function coma(price) {
+  return parseInt(price).toLocaleString()
+ }
 
   return (
      <>
@@ -48,7 +56,7 @@ const Detail = (props) => {
               <Div>
                  <Img>
                     <ImgSrc
-                       src="https://img-cf.kurly.com/shop/data/goods/1627632869421l0.jpg"
+                       src={data&&data[0].img}
                        alt=""
                     />
                  </Img>
@@ -58,17 +66,17 @@ const Detail = (props) => {
                        <InfoSection>
                           <Wrapper>
                              <Strong>
-                                <span>브랜드네임</span>
-                                여기에 타이틀내용
+                                
+                                {data&&data[0].title}
                              </Strong>
                           </Wrapper>
-                          <Content>여기에 컨텐츠내용</Content>
+                          <Content>{data&&data[0].content}</Content>
                        </InfoSection>
 
                        <div>
                           <Price>
                              <Num>
-                             여기에 얼마인지<Won>원</Won>
+                             {coma(data&&data[0].price)}<Won>원</Won>
                              </Num>
                           </Price>
 
@@ -77,7 +85,7 @@ const Detail = (props) => {
 
                        <Border />
                        <Tit>
-                          안내사항 <Con> 여기에 안내사항</Con>
+                          안내사항 <Con>{data&&data[0].notice}</Con>
                        </Tit>
 
                        <Border />
@@ -115,7 +123,10 @@ const Detail = (props) => {
                        <Order>
                           <div>
                              <Total>
-                                총 상품금액 :<Bold> </Bold>원
+                                총 상품금액 :
+                                <Bold>
+                                  {coma(data&&data[0].price * number)}
+                                </Bold>원
                              </Total>
                              <Ho>
                                 <IconPoint>적립</IconPoint>로그인

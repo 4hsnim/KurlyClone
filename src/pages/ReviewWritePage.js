@@ -4,11 +4,27 @@ import {useNavigate} from 'react-router-dom';
 
 const ReviewWritePage = () => {
    const navigate = useNavigate();
+   const [imageSrc, setImageSrc] = React.useState('')
+   const [image,setImage] = React.useState(false)
 
    const goReview = () => {
          window.alert('후기 등록이 완료되었습니다.')
          navigate('/');
    }
+   //이미지 미리보기
+   const encodeFileToBase64 = (fileBlob) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(fileBlob);
+      return new Promise((resolve) => {
+        reader.onload = () => {
+          setImageSrc(reader.result);
+          setImage(true)
+          resolve();
+        };
+      });
+  }
+
+   
    return (
       <>
          <Container>
@@ -51,7 +67,22 @@ const ReviewWritePage = () => {
                      <SubTitle3>사진등록</SubTitle3>
                      <td>
                         <PhotoContainer>
-                           <PhotoIcon>+</PhotoIcon>
+                           <label for="input-file">
+                              <PhotoIcon>+ </PhotoIcon>
+                           </label>
+                           {image?
+                           <InputFile
+                              onChange={encodeFileToBase64}
+                              style={{
+                               
+                              }}
+                              type="file"
+                              id="input-file"
+                           /> : <InputFile 
+                           type="file"
+                           id="input-file"
+                           />}                      
+                           
                         </PhotoContainer>
                         <PhotoTxt>
                            구매한 상품이 아니거나 캡쳐 사진을 첨부할 경우,
@@ -98,6 +129,10 @@ const Img = styled.img`
    margin: 20px;
 
 `;
+
+const InputFile = styled.input`
+   
+`
 
 const Tr = styled.tr`
    border-bottom: 1px solid #ddd;
