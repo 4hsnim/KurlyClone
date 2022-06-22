@@ -2,25 +2,25 @@
   "list": [
     {
       "id": 1,
-      "title": "title",
+      "title": "맛있는 치즈",
       "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg",
       "price": "10000"
     },
     {
       "id": 2,
-      "title": "title",
+      "title": "맛있는 소고기",
       "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1485857289116l0.jpg",
       "price": "20000"
     },
     {
       "id": 3,
-      "title": "title",
+      "title": "맛있는 스프",
       "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1488949996597l0.jpg",
       "price": "30000"
     },
     {
       "id": 4,
-      "title": "title",
+      "title": "맛있는 크림치즈",
       "imgUrl": "https://img-cf.kurly.com/shop/data/goods/1640765796240l0.jpg",
       "price": "30000"
     },
@@ -38,9 +38,9 @@
     },
     {
       "id": 7,
-      "title": "title",
+      "title": "아이유",
       "imgUrl": "https://firebasestorage.googleapis.com/v0/b/magazine-40b77.appspot.com/o/images%2F%EC%95%84%EC%9D%B4%EC%9C%A0.jpg?alt=media&token=70b1c5be-268d-41e9-bc71-91de9b1ec11c",
-      "price": "30000"
+      "price": "9999999999999999999"
     },
     {
       "loginId": "asdasdasd",
@@ -56,6 +56,30 @@
     {
       "loginId": "sparta123",
       "id": 10
+    },
+    {
+      "headers": {
+        "Authorization": "Bearer null"
+      },
+      "id": 11
+    },
+    {
+      "headers": {
+        "Authorization": "Bearer null"
+      },
+      "id": 12
+    },
+    {
+      "headers": {
+        "Authorization": "Bearer null"
+      },
+      "id": 13
+    },
+    {
+      "headers": {
+        "Authorization": "Bearer null"
+      },
+      "id": 14
     }
   ]
 }

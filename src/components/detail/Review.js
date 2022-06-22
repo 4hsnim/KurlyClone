@@ -4,10 +4,13 @@ import Comment from "./Comment";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom'
+import axios from "axios";
+
 const Review = ({ productId, name }) => {
    const navigate = useNavigate();
    const [modal, setModal] = useState(false);
+   const token = localStorage.getItem("token");
    const reviewList = [
       {
          boardId: 1,
@@ -64,9 +67,18 @@ const Review = ({ productId, name }) => {
       </ModalContainer>
    ); 
  }
- const goComment = () => {
-   navigate('/detail/:productId/write')
+ const loginCheckDB = () => {
+   if(token){
+      navigate('/detail/:productId/write')
+   }
+   else {
+      alert('로그인을 해주세요!')
+   }
  }
+
+//  const loginCheckDB = () => {
+//    navigate('/detail/:productId/write')
+//  }
 
   return (
      <>
@@ -226,7 +238,7 @@ const Review = ({ productId, name }) => {
            </div>
         </Container>
         <WriteBtnContainer>
-           <WriteBtn onClick={goComment}>후기쓰기</WriteBtn>
+           <WriteBtn onClick={loginCheckDB}>후기쓰기</WriteBtn>
         </WriteBtnContainer>
      </>
   );
