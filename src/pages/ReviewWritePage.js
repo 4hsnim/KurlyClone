@@ -44,25 +44,26 @@ const ReviewWritePage = () => {
    };
 
    const addReviewAxios = async (e) => {
-      // console.log(e.target.files);
+ 
       const uploaded_file = await uploadBytes(
-         ref(storage, `images/${e.target.files[0].name}`),
-         // e.target.files[0]
-         encodeFileToBase64(e.target.files[0])
-      );
-      // console.log(uploaded_file);
+         ref(storage, `images/${file_ref.current.files[0].name}`),
 
+         file_ref.current.files[0]
+      );
+
+     
       const file_url = await getDownloadURL(uploaded_file.ref);
-      console.log(file_url);
+      // console.log(file_url);
       file_link_ref.current = { url: file_url };
+      
 
       axios
          .post(
-            'http://localhost:',
+            'http://localhost:5002/review',
             {
-               image: file_link_ref.current?.url,
-               product: title_ref.current.value,
-               content: content_ref.current.value,
+               "image": file_link_ref.current?.url,
+               "title": title_ref.current.value,
+               "content": content_ref.current.value,
             },
             { headers: { Authorization: `Bearer ${token}` } }
          )
@@ -74,45 +75,8 @@ const ReviewWritePage = () => {
             const msg = error.response.data.message;
             window.alert(msg);
          });
-   };
-
-
- 
-
-   // React.useEffect(async () => {
-      // console.log(db);
-      // addDoc(collection(db, 'review'), {
-      //    title: "soup",
-      //    content: "yamyam"
-      // });
-
-   //    const docRef = doc(db, 'review', '7wXOfxRWvus8w11mkoXO');
-   //    updateDoc(docRef, {content: 'yammyyammy yamyam'});
-   // }, [])
-
-      // const docRef = doc(db, 'review', '7wXOfxRWvus8w11mkoXO');
-      // deleteDoc(docRef);
-   // }, [])
-
-
-
-   // const addReviewAxios = () => {
-      // dispatch(
-      //    addReviewFB({
-      //       title: title.current.value,
-      //       content: content.current.value,
-      //       image_url: file_link_ref.curent.url
-      //    })
-      // )
-      // .then(function (response)) {
-      // window.alert('후기 등록이 완료되었습니다.');
-      // navigate('/');
-      // }
-      // .catch(function(error) {
-      //    const msg = error.response.data.message;
-      //    window.alert(msg);
-      // })
-   // };
+         console.log('file_link_ref.current.url?', file_link_ref.current.url);
+   };   
 
 
    return (
@@ -179,7 +143,7 @@ const ReviewWritePage = () => {
                            type="file"
                            ref={file_ref}
                            style={{ display: 'block', margin: 30 }}
-                           onChange={addReviewAxios}
+
                         />
                         <PhotoTxt>
                            구매한 상품이 아니거나 캡쳐 사진을 첨부할 경우,
