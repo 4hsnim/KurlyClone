@@ -83,6 +83,7 @@ const [showZonecode, setShowZonecode] = useState('');
   };
   const OnChangeAddress = (e) => {
     SetAddress(e.target.value);
+    console.log(address)
   };
 
   // 보낼 데이터
@@ -91,7 +92,7 @@ const [showZonecode, setShowZonecode] = useState('');
     "password": password,
     "passwordcheck": passwordCheck,
     "nickname": nickname,
-    // "address": address
+    "address": showAddress + " " + showZonecode
   };
   // 성공함
   // const signUp = async () => {

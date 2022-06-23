@@ -1,27 +1,20 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch,  } from 'react-redux';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { useParams } from "react-router";
 import { db, storage } from '../firebase';
 import axios from 'axios';
 
-import {
-   collection,
-   doc,
-   getDocs,
-   addDoc,
-   updateDoc,
-   deleteDoc,
-} from 'firebase/firestore';
-import { TbPlus } from 'react-icons/tb';
+
 const ReviewWritePage = () => {
    const token = localStorage.getItem('token');
    const navigate = useNavigate();
-
-   const dispatch = useDispatch();
+   const { productId } = useParams();
+   const [data, setData] = useState(null);
    
-   const [is_login, setIsLogin] = useState(true);
+
    const title_ref = React.useRef(null);
    const content_ref = React.useRef(null);
    const file_ref = React.useState(null);
@@ -32,7 +25,7 @@ const ReviewWritePage = () => {
       title: '',
       content: '',
    });
-
+   // 이미지 미리보기
    const encodeFileToBase64 = (fileBlob) => {
       const reader = new FileReader();
       reader.readAsDataURL(fileBlob);
@@ -44,6 +37,7 @@ const ReviewWritePage = () => {
       });
    };
 
+   // 파일 업로드하기
    const addReviewAxios = async (e) => {
  
       const uploaded_file = await uploadBytes(
@@ -52,19 +46,17 @@ const ReviewWritePage = () => {
          file_ref.current.files[0]
       );
 
-     
       const file_url = await getDownloadURL(uploaded_file.ref);
       // console.log(file_url);
       file_link_ref.current = { url: file_url };
-      
 
       axios
          .post(
-            'http://localhost:5002/review',
+            'http://13.125.151.93/comment'+`${productId}/add`,
             {
-               "image": file_link_ref.current?.url,
+               "comment_image": file_link_ref.current?.url,
                "title": title_ref.current.value,
-               "content": content_ref.current.value,
+               "comment": content_ref.current.value,
             },
             { headers: { Authorization: `Bearer ${token}` } }
          )
@@ -78,6 +70,18 @@ const ReviewWritePage = () => {
          });
          console.log('file_link_ref.current.url?', file_link_ref.current.url);
    };   
+   // 상품 상세 이미지, 타이틀 가지고 오기
+   React.useEffect(() => {
+      axios
+        .get("http://13.125.151.93/product/detail/" + productId)
+        .then((response) => {
+          setData(response.data);
+          console.log(response.data);
+        })
+        .catch((response) => {
+          console.log(response);
+        });
+    }, []);
 
 
 
@@ -92,12 +96,12 @@ const ReviewWritePage = () => {
                      <td>
                         <ImgContainer>
                            <Img
-                              src="https://img-cf.kurly.com/shop/data/goods/1452166174810l0.jpg"
+                              src={data && data.image_url}
                               alt=""
                            />
                         </ImgContainer>
                      </td>
-                     <Title>[오뚜기] 진라면 매운맛 5입</Title>
+                     <Title>{data && data.title}</Title>
                   </Tr>
                </thead>
                <tbody>
@@ -189,8 +193,8 @@ const ImgContainer = styled.div`
 `
 
 const Img = styled.img`
-   width: 100px;
-   height: 100px;
+   width: 200px;
+   height: 200px;
    margin: 20px;
 
 `;

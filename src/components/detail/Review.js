@@ -6,21 +6,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 
-import {useNavigate,useParams} from 'react-router-dom'
-import { getDetail } from "../../redux/modules/detail";
+import {useNavigate,useParams} from 'react-router-dom';
+import { getReview } from "../../redux/modules/detail";
 
 
-const Review = ({ productId, name }) => {
+
+
+const Review = () => {
+
+
    const navigate = useNavigate();   
    const dispatch = useDispatch();
    const [itemList, setItemList] = useState([]);
    const [commentId, setcommentId] = useState(null);
    const [modal, setModal] = useState(false);
-   const params = useParams()
+   const  {productId} = useParams()
    const token = localStorage.getItem("token");
 
 //    const postDelete = () => {
-//       axios.delete("http://dlckdals04.shop/" + props.state.existsposts[0].postId,
+//       axios.delete("http://13.125.151.93/comment" + props.state.existsposts[0].postId,
 //           {
 //               headers: { 'Authorization': `Bearer ${token}` }
 //           }).then(function (response) {
@@ -37,7 +41,7 @@ const Review = ({ productId, name }) => {
 
    const loginCheckDB = () => {
       if(token){
-         navigate('/detail/:productId/write')
+         navigate('/detail/'+`${productId}/write`)
       }
       else {
          alert('로그인을 해주세요!')
@@ -45,10 +49,10 @@ const Review = ({ productId, name }) => {
 
       }
    React.useEffect (() => {
-      dispatch(getDetail())
+      dispatch(getReview())
    },[])
 
-   const reviewList = useSelector((state)=> state.detail.detailInfo)
+   const reviewList = useSelector((state)=> state.detail.reviewInfo)
    console.log(reviewList)
 
 
@@ -139,77 +143,72 @@ const Review = ({ productId, name }) => {
                           setModal(!modal);
                        }}
                     >
-                       {reviewList &&
-                          reviewList.map((val, i) => {
-                             return (
-                                <>
-                                   <TbodyTr>
-                                      <td
-                                         style={{
-                                            width: '70px',
-                                            textAlign: 'center',
-                                         }}
-                                      >
-                                         {val.reviewid}
-                                      </td>
-                                      <td
-                                         style={{
-                                            width: '592px',
-                                            textAlign: 'center',
-                                         }}
-                                      >
-                                         {val.reviewtitle}
-                                      </td>
-                                      <td></td>
-                                      <td
-                                         style={{
-                                            width: '100px',
-                                            textAlign: 'left',
-                                         }}
-                                      >
-                                         {val.reviewuser}
-                                      </td>
-                                      <td
-                                         style={{
-                                            width: '100px',
-                                            textAlign: 'center',
-                                         }}
-                                      >
-                                         {/* {val.date} */}
-                                      </td>
-                                      <td
-                                         style={{
-                                            width: '40px',
-                                            textAlign: 'center',
-                                         }}
-                                      >
-                                         {/* {val.helped} */}
-                                      </td>
-                                      <td
-                                         style={{
-                                            width: '80px',
-                                            textAlign: 'center',
-                                         }}
-                                      >
-                                         {/* {val.view} */}
-                                      </td>
-                                   </TbodyTr>
 
+                      
+                       {reviewList&&reviewList.map((val, i) => {
+                          return (
+                             <>
+                                <TbodyTr>
+                                   <td
+                                      style={{
+                                         width: '70px',
+                                         textAlign: 'center',
+                                      }}
+                                   >
+                                      {val.productsId}
+                                   </td>
+                                   <td
+                                      style={{
+                                         width: '592px',
+                                         textAlign: 'center',
+                                      }}
+                                   >
+                                      {val.title}
+                                   </td>
+                                   <td></td>
+                                   <td
+                                      style={{
+                                         width: '100px',
+                                         textAlign: 'left',
+                                      }}
+                                   >
+                                      {val.loginId}
+                                   </td>
+                                   <td
+                                      style={{
+                                         width: '100px',
+                                         textAlign: 'center',
+                                      }}
+                                   >
+                                      {/* {val.date} */}
+                                   </td>
+                                   <td
+                                      style={{
+                                         width: '40px',
+                                         textAlign: 'center',
+                                      }}
+                                   >
+                                      {/* {val.helped} */}
+                                   </td>
+                                   <td
+                                      style={{
+                                         width: '80px',
+                                         textAlign: 'center',
+                                      }}
+                                   >
+                                      {/* {val.view} */}
+                                   </td>
+                                </TbodyTr>
+                          
                                    <tr>
                                       <td colspan={6}>
-                                         {modal ? (
-                                            <ModalContainer>
-                                               <div>
-                                                  <ReviewImage
-                                                     src={val.reviewimg}
-                                                  />
-                                               </div>
-                                               <div>{val.reviewcontent}</div>
-                                               <DeleteBtn>삭제하기</DeleteBtn>
-                                            </ModalContainer>
-                                         ) : (
-                                            ''
-                                         )}
+                                         {modal ? 
+                                       <ModalContainer>
+                                          <div><ReviewImage src={val.comment_image}/></div>  
+                                          <div>{val.comment}</div>
+                                          <DeleteBtn>삭제하기</DeleteBtn>
+                                       </ModalContainer> : ''}
+
                                       </td>
                                    </tr>
                                 </>
