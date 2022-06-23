@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# 클론코딩 마켓컬리
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    
+    
 
-## Available Scripts
+## 1. 프로젝트 소개
 
-In the project directory, you can run:
+**클론 대상**: [마켓컬리](https://www.kurly.com)
 
-### `yarn start`
+## 2. 프로젝트 기간
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 2022-06-17 ~ 2022-06-23
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 3. 팀원 
 
-### `yarn test`
+[BE]
+강현구
+이기정
+이정찬
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[FE]
+이윤영
+임형섭
 
-### `yarn build`
+## 4. 프로젝트 구조
+- home
+- 회원가입
+- 로그인
+- 리뷰
+        
+## 5. 와이어프레임
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[마켓컬리 와이어프레임(최종).pdf](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f3b81050-19a0-40bd-a43f-d7e1f5b5ff6f/마켓컬리_와이어프레임(최종).pdf)
+    
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 6. API 설계
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[API 설계]
+(https://www.notion.so/df67a8c51f8f41879747b194a8dd776e)
 
-### `yarn eject`
+[ERD 설계]
+(https://s3-us-west-2.amazonaws.com/secure.notion-static.com/da09f5a8-073d-45f0-b363-267e87a4409d/스크린샷_2022-06-17_오후_6.11.56.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 7. 클론 주소
+http://hi-its-yeey.shop.s3-website.ap-northeast-2.amazonaws.com/

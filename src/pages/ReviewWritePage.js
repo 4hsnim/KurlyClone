@@ -52,7 +52,7 @@ const ReviewWritePage = () => {
 
       axios
          .post(
-            'http://13.125.151.93/comment'+`${productId}/add`,
+            'http://13.125.151.93/comment/'+`${productId}/add`,
             {
                "comment_image": file_link_ref.current?.url,
                "title": title_ref.current.value,
