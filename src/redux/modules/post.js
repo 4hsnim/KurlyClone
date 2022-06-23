@@ -68,7 +68,7 @@ return { type: REMOVE, widget };
 export const getPosts = createAsyncThunk("GET/getPosts", async () => {
     return  axios({
       method: "get",
-      url: "http://localhost:5001/list",
+      url: "http://13.125.151.93/product/main",
     }).then((response) => response.data);
     
   });
