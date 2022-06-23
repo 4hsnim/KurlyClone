@@ -63,5 +63,4 @@
 [ERD 설계]
 (https://s3-us-west-2.amazonaws.com/secure.notion-static.com/da09f5a8-073d-45f0-b363-267e87a4409d/스크린샷_2022-06-17_오후_6.11.56.png)
 
-## 10. 클론 주소
-http://hi-its-yeey.shop.s3-website.ap-northeast-2.amazonaws.com/
+
