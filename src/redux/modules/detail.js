@@ -1,10 +1,12 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import { useParams } from "react-router";
 
-export const getDetail = createAsyncThunk("GET/getdetails", async () => {
+export const getReview = createAsyncThunk("GET/getdetails", async () => {
+    const { productId } = useParams();
     return  axios({
       method: "get",
-      url: "http://localhost:5001/comment",
+      url: "http://13.125.151.93/comment"+productId,
     })
     .then((response) => response.data);
 
@@ -19,20 +21,20 @@ export const getDetail = createAsyncThunk("GET/getdetails", async () => {
     },
     reducers: {},
     extraReducers: {
-        [getDetail.pending]: (state) => {
+        [getReview.pending]: (state) => {
             state.loading = true;
-            state.detailInfo = [];
+            state.reviewInfo = [];
             state.error = "";
           },
-        [getDetail.fulfilled]: (state, action) => {
+        [getReview.fulfilled]: (state, action) => {
             console.log(action)
-            state.detailInfo = action.payload;
+            state.reviewInfo = action.payload;
             state.loading = false;
             state.error = "";
           },
-        [getDetail.rejected]: (state, action) => {
+        [getReview.rejected]: (state, action) => {
             state.loading = false;
-            state.detailInfo = [];
+            state.reviewInfo = [];
             state.error = action.payload;
           }
     }

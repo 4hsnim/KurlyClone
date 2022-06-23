@@ -56,6 +56,7 @@ export const signUpDB = (formData) => {
     .then((response) => {
         console.log(response)
        window.alert("회원가입이 완료되었습니다.")
+       console.log(formData)
 
     })
     .catch((error) => {
