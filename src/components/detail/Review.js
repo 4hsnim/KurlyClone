@@ -5,8 +5,10 @@ import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
+
 import {useNavigate,useParams} from 'react-router-dom'
 import { getDetail } from "../../redux/modules/detail";
+
 
 
 const Review = ({ productId, name }) => {

@@ -91,7 +91,6 @@ const Header = () => {
                <CategoryBox>
                   {/* <FontAwesomeIcon icon={farBars} /> */}
 
-                
                   <Category>전체 카테고리</Category>
 
                   <Category>신상품</Category>
