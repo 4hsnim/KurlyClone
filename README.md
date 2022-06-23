@@ -50,7 +50,8 @@
     - styled-component
     - axios
     - sourceTree
-    - Bootstrap
+    - redux-toolkit
+    - react-daum-postcode
 
 ## 8. 와이어프레임
 
