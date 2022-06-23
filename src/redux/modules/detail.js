@@ -1,20 +1,25 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import { useParams } from "react-router";
+import { connectStorageEmulator } from "firebase/storage";
 
 export const getReview = createAsyncThunk("GET/getdetails", async () => {
     const { productId } = useParams();
     return  axios({
       method: "get",
-      url: "http://13.125.151.93/comment"+productId,
+      url: "http://13.125.151.93/comment/list/"+productId,
     })
-    .then((response) => response.data);
-
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
     
   });
 
   const detailSlice = createSlice({
-    name:"post",
+    name:"detail",
     initialState:{
         list: [],
         error: "",
