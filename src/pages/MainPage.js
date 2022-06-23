@@ -91,9 +91,9 @@ const MainPage = () => {
 
 
                               <ProductImg
-                                 src={val.imgUrl}
+                                 src={val.image_url}
                                  onClick={() => {
-                                    navigate('/detail/'+ val.id)
+                                    navigate('/detail/'+ val.productId)
                                  }}
                                  style={{
                                     margin: '0 10px',

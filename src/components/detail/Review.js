@@ -6,22 +6,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 
-import {useNavigate,useParams} from 'react-router-dom'
-import { getDetail } from "../../redux/modules/detail";
+import {useNavigate,useParams} from 'react-router-dom';
+import { getReview } from "../../redux/modules/detail";
 
 
 
-const Review = ({ productId, name }) => {
+
+const Review = () => {
+
+
    const navigate = useNavigate();   
    const dispatch = useDispatch();
    const [itemList, setItemList] = useState([]);
    const [commentId, setcommentId] = useState(null);
    const [modal, setModal] = useState(false);
-   const params = useParams()
+   const  {productId} = useParams()
    const token = localStorage.getItem("token");
 
 //    const postDelete = () => {
-//       axios.delete("http://dlckdals04.shop/" + props.state.existsposts[0].postId,
+//       axios.delete("http://13.125.151.93/comment" + props.state.existsposts[0].postId,
 //           {
 //               headers: { 'Authorization': `Bearer ${token}` }
 //           }).then(function (response) {
@@ -38,7 +41,7 @@ const Review = ({ productId, name }) => {
 
    const loginCheckDB = () => {
       if(token){
-         navigate('/detail/:productId/write')
+         navigate('/detail/'+`${productId}/write`)
       }
       else {
          alert('로그인을 해주세요!')
@@ -46,10 +49,10 @@ const Review = ({ productId, name }) => {
 
       }
    React.useEffect (() => {
-      dispatch(getDetail())
+      dispatch(getReview())
    },[])
 
-   const reviewList = useSelector((state)=> state.detail.detailInfo)
+   const reviewList = useSelector((state)=> state.detail.reviewInfo)
    console.log(reviewList)
 
 
@@ -140,6 +143,7 @@ const Review = ({ productId, name }) => {
                           setModal(!modal);
                        }}
                     >
+
                       
                        {reviewList&&reviewList.map((val, i) => {
                           return (
@@ -151,7 +155,7 @@ const Review = ({ productId, name }) => {
                                          textAlign: 'center',
                                       }}
                                    >
-                                      {val.reviewid}
+                                      {val.productsId}
                                    </td>
                                    <td
                                       style={{
@@ -159,7 +163,7 @@ const Review = ({ productId, name }) => {
                                          textAlign: 'center',
                                       }}
                                    >
-                                      {val.reviewtitle}
+                                      {val.title}
                                    </td>
                                    <td></td>
                                    <td
@@ -168,7 +172,7 @@ const Review = ({ productId, name }) => {
                                          textAlign: 'left',
                                       }}
                                    >
-                                      {val.reviewuser}
+                                      {val.loginId}
                                    </td>
                                    <td
                                       style={{
@@ -200,32 +204,30 @@ const Review = ({ productId, name }) => {
                                       <td colspan={6}>
                                          {modal ? 
                                        <ModalContainer>
-                                          <div><ReviewImage src={val.reviewimg}/></div>  
-                                          <div>{val.reviewcontent}</div>
+                                          <div><ReviewImage src={val.comment_image}/></div>  
+                                          <div>{val.comment}</div>
                                           <DeleteBtn>삭제하기</DeleteBtn>
                                        </ModalContainer> : ''}
+
                                       </td>
                                    </tr>
-                           
-                             </>
-                          );
-                       })}
-                     
-                          
-            
+                                </>
+                             );
+                          })}
                     </Tbody>
                  </Table>
+                 <WriteBtnContainer>
+                    <WriteBtn onClick={loginCheckDB}>후기쓰기</WriteBtn>
+                 </WriteBtnContainer>
                  {/* <div>
               {post_list.map((item, idx) => {
                 return <Comment name={name} key={idx} {...item} />;
               })}
             </div> */}
+      
               </Form>
            </div>
         </Container>
-        <WriteBtnContainer>
-           <WriteBtn onClick={loginCheckDB}>후기쓰기</WriteBtn>
-        </WriteBtnContainer>
      </>
   );
 };
@@ -236,9 +238,11 @@ export default Review;
 
 const Container = styled.div`
    display: flex;
-   width: 1000px;
+   width: 600px;
    margin: 50px auto;
    padding-top: 20px;
+   position: relative;
+   right: 400px;
 `;
 
 const Form = styled.form`
@@ -305,17 +309,18 @@ const TbodyTr = styled.tr`
    }
 `;
 const WriteBtnContainer = styled.div`
-   display: block;
+   display: inline;
    width: 100px;
    height: 40px;
    text-align: center;
    cursor: pointer;
    margin-left: 1350px;
+   position: relative;
+   right: 80px;
 
 `;
 
 const WriteBtn = styled.button`
-   position: absolute;
    margin: auto;
    color: #fff;
    border-style: none;
