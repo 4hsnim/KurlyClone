@@ -21,7 +21,7 @@ const Header = () => {
    };
 
    const goLogOut = () => {
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
       window.location.replace('/');
    };
 
@@ -65,7 +65,7 @@ const Header = () => {
                   ) : (
                      <>
                         {/* <span>
-               어서오세요. 누구님    
+               어서오세요. 누구님
                <ImgN
                   src="https://res.kurly.com/kurly/ico/2021/new_badge_28_28.png"
                   alt=""/>
@@ -217,7 +217,7 @@ const Category = styled.li`
    line-height: 20px;
    text-align: center;
    justify-content: center;
-}
+
 `;
 const Icons = styled.div``;
 const Input = styled.input`

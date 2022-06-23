@@ -21,14 +21,18 @@ const Detail = (props) => {
 
 
   const min = () => {
-     if (number <= 1) {
-        window.alert('최소 주문 수량은 1개입니다.');
-     } else setNumber(parseInt(number) - 1);
+
+    if (number <= 1) {
+      window.alert("최소 주문 수량은 1개입니다.");
+    } else setNumber(parseInt(number) - 1);
+
   };
   const max = () => {
-     if (number >= 10) {
-        window.alert('최대 주문 수량은 10개입니다.');
-     } else setNumber(parseInt(number) + 1);
+
+    if(number >= 10){
+      window.alert("최대 주문 수량은 10개입니다.")
+    } else  setNumber(parseInt(number) + 1);
+
   };
   const addCart = () => {
      window.alert('장바구니에 상품을 담았습니다.');
@@ -158,18 +162,21 @@ const Detail = (props) => {
 export default Detail;
 
 const Container = styled.div`
-   margin: 20px auto;
+  margin: 20px auto;
 `;
 const Section = styled.section`
-   width: 1050px;
-   margin: 20px auto;
-   padding-top: 20px;
-   display: flex;
+  width: 1050px;
+  margin: 20px auto;
+  padding-top: 20px;
+  display: flex;
 `;
+
 const Ho = styled.tr`
-   /* margin-right: 50px; */
-   padding: 0 5px;
+  /* margin-right: 50px; */
+  padding: 0 5px;
 `;
+
+
 const IconPoint = styled.div`
    display: inline-block;
    width: 28px;
@@ -185,53 +192,61 @@ const IconPoint = styled.div`
    text-align: center;
 `;
 const Total = styled.tr`
-   font-weight: 700;
-   font-size: 15px;
-   margin-bottom: 10px;
-   display: flex;
-   justify-content: right;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: right;
 `;
+
 const Point = styled.span`
-   font-size: 15px;
-   display: block;
-   justify-content: center;
-   align-items: center;
-   margin-left: 120px;
+  font-size: 15px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin-left: 120px;
 `;
+
 const Bold = styled.span`
-   display: flex;
-   justify-content: right;
-   font-weight: 900;
-   font-size: 30px;
-   line-height: 10px;
-   margin-right: 2px;
-   display: flex;
-   color: #333;
-   margin-bottom: 10px;
-   margin-left: 15px;
+  display: flex;
+  justify-content: right;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 10px;
+  margin-right: 2px;
+  display: flex;
+  color: #333;
+  margin-bottom: 10px;
+  margin-left: 15px;
 `;
+
 const Div = styled.div`
-   padding: 30px 0 20px;
-   color: #333;
-   letter-spacing: 0;
-   display: flex;
+  padding: 30px 0 20px;
+  color: #333;
+  letter-spacing: 0;
+  display: flex;
+
 `;
 const Order = styled.table`
    margin-bottom: 10px;
    padding: 10px;
    margin-right: 210px;
 `;
+
+
 const Tit = styled.span`
-   display: flex;
-   width: 900px;
-   font-size: 14px;
-   color: #666;
+  display: flex;
+  width: 900px;
+  font-size: 14px;
+  color: #666;
 `;
+
 const Con = styled.span`
-   color: #333;
-   letter-spacing: -0.5px;
-   font-size: 15px;
-   margin-left: 20px;
+  color: #333;
+  letter-spacing: -0.5px;
+  font-size: 15px;
+  margin-left: 20px;
+
 `;
 const Border = styled.div`
    border-top: 0.2px solid gray;
@@ -249,6 +264,12 @@ const WrapIcon = styled.div`
 const Wrapper = styled.div`
    display: flex;
 `;
+
+
+const Wrapper = styled.div`
+  display: flex;
+`;
+
 const Price = styled.div`
    width: 560px;
 `;
@@ -258,15 +279,17 @@ const Num = styled.span`
    color: #333;
 `;
 const Won = styled.span`
-   font-weight: 500;
-   font-size: 20px;
+  font-weight: 500;
+  font-size: 20px;
 `;
+
 const Img = styled.div`
-   padding: 0 40px 0 0;
-   display: flex;
-   width: 430px;
-   height: 552px;
+  padding: 0 40px 0 0;
+  display: flex;
+  width: 430px;
+  height: 552px;
 `;
+
 const P = styled.p`
    padding-top: 7px;
    font-size: 14px;
@@ -274,20 +297,22 @@ const P = styled.p`
    line-height: 20px;
    letter-spacing: 0;
 `;
+
 const ImgSrc = styled.img`
-   width: 430px;
-   height: 552px;
-   max-width: 100%;
+  width: 430px;
+  height: 552px;
+  max-width: 100%;
 `;
+
 const Strong = styled.p`
-   font-weight: 500;
-   font-size: 24px;
-   color: #333;
-   margin-right: 219px;
-   display: flex;
-   justify-content: left;
-   align-items: left;
-   margin-top: 100px;
+  font-weight: 500;
+  font-size: 24px;
+  color: #333;
+  margin-right: 219px;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  margin-top: 100px;
 `;
 const InfoSection = styled.section`
    padding: 0 0 29px 0;
