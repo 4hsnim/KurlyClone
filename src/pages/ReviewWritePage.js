@@ -16,7 +16,7 @@ import {
 } from 'firebase/firestore';
 import { TbPlus } from 'react-icons/tb';
 const ReviewWritePage = () => {
-   const token = localStorage.getItem('jwt');
+   const token = localStorage.getItem('token');
    const navigate = useNavigate();
 
    const dispatch = useDispatch();

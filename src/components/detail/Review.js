@@ -10,7 +10,6 @@ import {useNavigate,useParams} from 'react-router-dom'
 import { getDetail } from "../../redux/modules/detail";
 
 
-
 const Review = ({ productId, name }) => {
    const navigate = useNavigate();   
    const dispatch = useDispatch();
@@ -140,92 +139,96 @@ const Review = ({ productId, name }) => {
                           setModal(!modal);
                        }}
                     >
-                      
-                       {reviewList&&reviewList.map((val, i) => {
-                          return (
-                             <>
-                                <TbodyTr>
-                                   <td
-                                      style={{
-                                         width: '70px',
-                                         textAlign: 'center',
-                                      }}
-                                   >
-                                      {val.reviewid}
-                                   </td>
-                                   <td
-                                      style={{
-                                         width: '592px',
-                                         textAlign: 'center',
-                                      }}
-                                   >
-                                      {val.reviewtitle}
-                                   </td>
-                                   <td></td>
-                                   <td
-                                      style={{
-                                         width: '100px',
-                                         textAlign: 'left',
-                                      }}
-                                   >
-                                      {val.reviewuser}
-                                   </td>
-                                   <td
-                                      style={{
-                                         width: '100px',
-                                         textAlign: 'center',
-                                      }}
-                                   >
-                                      {/* {val.date} */}
-                                   </td>
-                                   <td
-                                      style={{
-                                         width: '40px',
-                                         textAlign: 'center',
-                                      }}
-                                   >
-                                      {/* {val.helped} */}
-                                   </td>
-                                   <td
-                                      style={{
-                                         width: '80px',
-                                         textAlign: 'center',
-                                      }}
-                                   >
-                                      {/* {val.view} */}
-                                   </td>
-                                </TbodyTr>
-                          
+                       {reviewList &&
+                          reviewList.map((val, i) => {
+                             return (
+                                <>
+                                   <TbodyTr>
+                                      <td
+                                         style={{
+                                            width: '70px',
+                                            textAlign: 'center',
+                                         }}
+                                      >
+                                         {val.reviewid}
+                                      </td>
+                                      <td
+                                         style={{
+                                            width: '592px',
+                                            textAlign: 'center',
+                                         }}
+                                      >
+                                         {val.reviewtitle}
+                                      </td>
+                                      <td></td>
+                                      <td
+                                         style={{
+                                            width: '100px',
+                                            textAlign: 'left',
+                                         }}
+                                      >
+                                         {val.reviewuser}
+                                      </td>
+                                      <td
+                                         style={{
+                                            width: '100px',
+                                            textAlign: 'center',
+                                         }}
+                                      >
+                                         {/* {val.date} */}
+                                      </td>
+                                      <td
+                                         style={{
+                                            width: '40px',
+                                            textAlign: 'center',
+                                         }}
+                                      >
+                                         {/* {val.helped} */}
+                                      </td>
+                                      <td
+                                         style={{
+                                            width: '80px',
+                                            textAlign: 'center',
+                                         }}
+                                      >
+                                         {/* {val.view} */}
+                                      </td>
+                                   </TbodyTr>
+
                                    <tr>
                                       <td colspan={6}>
-                                         {modal ? 
-                                       <ModalContainer>
-                                          <div><ReviewImage src={val.reviewimg}/></div>  
-                                          <div>{val.reviewcontent}</div>
-                                          <DeleteBtn>삭제하기</DeleteBtn>
-                                       </ModalContainer> : ''}
+                                         {modal ? (
+                                            <ModalContainer>
+                                               <div>
+                                                  <ReviewImage
+                                                     src={val.reviewimg}
+                                                  />
+                                               </div>
+                                               <div>{val.reviewcontent}</div>
+                                               <DeleteBtn>삭제하기</DeleteBtn>
+                                            </ModalContainer>
+                                         ) : (
+                                            ''
+                                         )}
                                       </td>
                                    </tr>
-                           
-                             </>
-                          );
-                       })}
-                     
-                          
-            
+                                </>
+                             );
+                          })}
                     </Tbody>
                  </Table>
+                 <WriteBtnContainer>
+                    <WriteBtn onClick={loginCheckDB}>후기쓰기</WriteBtn>
+                 </WriteBtnContainer>
                  {/* <div>
               {post_list.map((item, idx) => {
                 return <Comment name={name} key={idx} {...item} />;
               })}
             </div> */}
+      
               </Form>
            </div>
         </Container>
-        <WriteBtnContainer>
-           <WriteBtn onClick={loginCheckDB}>후기쓰기</WriteBtn>
-        </WriteBtnContainer>
      </>
   );
 };
@@ -236,9 +239,11 @@ export default Review;
 
 const Container = styled.div`
    display: flex;
-   width: 1000px;
+   width: 600px;
    margin: 50px auto;
    padding-top: 20px;
+   position: relative;
+   right: 400px;
 `;
 
 const Form = styled.form`
@@ -305,17 +310,18 @@ const TbodyTr = styled.tr`
    }
 `;
 const WriteBtnContainer = styled.div`
-   display: block;
+   display: inline;
    width: 100px;
    height: 40px;
    text-align: center;
    cursor: pointer;
    margin-left: 1350px;
+   position: relative;
+   right: 80px;
 
 `;
 
 const WriteBtn = styled.button`
-   position: absolute;
    margin: auto;
    color: #fff;
    border-style: none;
