@@ -266,10 +266,6 @@ const Wrapper = styled.div`
 `;
 
 
-const Wrapper = styled.div`
-  display: flex;
-`;
-
 const Price = styled.div`
    width: 560px;
 `;
