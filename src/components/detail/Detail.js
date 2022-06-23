@@ -41,14 +41,14 @@ const Detail = (props) => {
 
   React.useEffect( () => {
      axios
-     .get("http://localhost:5001/detail") 
-     .then((response) => {
-      setData(response.data);
-       console.log(response.data);
-     })
-     .catch((response) => {
-       console.log(response);
-     });
+        .get('http://13.125.151.93/detail')
+        .then((response) => {
+           setData(response.data);
+           console.log(response.data);
+        })
+        .catch((response) => {
+           console.log(response);
+        });
  }, []);
  function coma(price) {
   return parseInt(price).toLocaleString()
@@ -265,10 +265,6 @@ const Wrapper = styled.div`
    display: flex;
 `;
 
-
-const Wrapper = styled.div`
-  display: flex;
-`;
 
 const Price = styled.div`
    width: 560px;
