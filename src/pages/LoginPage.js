@@ -35,8 +35,6 @@ const LoginPage = () => {
     function login() {
       dispatch(loginDB(formData));
       navigate("/");
-      window.location.reload()
-      
     }
    
 
