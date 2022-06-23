@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 export const getDetail = createAsyncThunk("GET/getdetails", async () => {
     return  axios({
       method: "get",
-      url: "http://localhost:5001/detail",
+      url: "http://localhost:5001/comment",
     })
     .then((response) => response.data);
 
