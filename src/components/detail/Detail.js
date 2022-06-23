@@ -33,6 +33,7 @@ const Detail = (props) => {
     navigate("/");
   };
 
+
   React.useEffect(() => {
     axios
       .get("http://13.125.151.93/product/detail/" + productId)
@@ -47,6 +48,7 @@ const Detail = (props) => {
   function coma(price) {
     return parseInt(price).toLocaleString();
   }
+
 
   return (
     <>
@@ -236,6 +238,7 @@ const WrapIcon = styled.div`
   margin-top: 20px;
 `;
 const Wrapper = styled.div`
+
   display: flex;
 `;
 

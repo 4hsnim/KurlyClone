@@ -9,7 +9,7 @@ import axios from 'axios';
 
 
 const ReviewWritePage = () => {
-   const token = localStorage.getItem('jwt');
+   const token = localStorage.getItem('token');
    const navigate = useNavigate();
    const { productId } = useParams();
    const [data, setData] = useState(null);
