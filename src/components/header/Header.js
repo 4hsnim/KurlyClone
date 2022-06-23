@@ -11,18 +11,17 @@ import { BsCart2, BsHeart } from 'react-icons/bs';
 
 const Header = () => {
    const navigate = useNavigate();
-   const token = localStorage.getItem('jwt');
+   const token = localStorage.getItem('token');
 
 
 
 
    const goLogin = () => {
-      localStorage.getItem(token);
       navigate('/Login');
    };
 
    const goLogOut = () => {
-      localStorage.removeItem(token);
+      localStorage.removeItem("token");
       window.location.replace('/');
    };
 
@@ -55,18 +54,18 @@ const Header = () => {
                   />
 
                   {!token ? (
-                     <div>
+                     <>
                         <Menu>
                            고객센터
                            <HoverList /> &nbsp;
                         </Menu>
                         <Menu onClick={goLogin}>로그인 &nbsp; |</Menu>
                         <Menu onClick={goSignUp}>회원가입 &nbsp; |</Menu>
-                     </div>
+                     </>
                   ) : (
-                     <div>
+                     <>
                         {/* <span>
-               어서오세요. 누구님    
+               어서오세요. 누구님
                <ImgN
                   src="https://res.kurly.com/kurly/ico/2021/new_badge_28_28.png"
                   alt=""/>
@@ -75,9 +74,8 @@ const Header = () => {
                            고객센터
                            <HoverList /> &nbsp;
                         </Menu>
-                        <Menu onClick={goLogin}>로그아웃 &nbsp; |</Menu>
-                        <Menu onClick={goSignUp}>회원가입 &nbsp; |</Menu>
-                     </div>
+                        <Menu onClick={goLogOut}>로그아웃 &nbsp; |</Menu>
+                     </>
                   )}
                </UserMenu>
 
@@ -220,7 +218,7 @@ const Category = styled.li`
    line-height: 20px;
    text-align: center;
    justify-content: center;
-}
+
 `;
 const Icons = styled.div``;
 const Input = styled.input`

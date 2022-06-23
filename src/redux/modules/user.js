@@ -105,8 +105,8 @@ export const idCheckDB = (formData) => {
 // Reducer
 export default function reducer(state = {}, action = {}) {
     switch (action.type) {
-    case SET : {
-        return {}
+    case LOAD : {
+        // return {loginId: }
     }
     
     default: return state;
