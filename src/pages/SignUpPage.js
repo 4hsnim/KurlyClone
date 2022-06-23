@@ -40,8 +40,10 @@ const SignUpPage = () => {
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
   
 
+   
 
-
+const [showAddress, setShowAddress] = useState('');
+const [showZonecode, setShowZonecode] = useState('');
   // 카카오 주소 API
   const handle = {
     // 버튼 클릭 이벤트
@@ -49,15 +51,23 @@ const SignUpPage = () => {
         setOpenPostcode(current => !current);
     },
 
+
     // 주소 선택 이벤트
     selectAddress: (data) => {
+      setShowAddress(data.address);
+      setShowZonecode(data.zonecode);
         console.log(`
             주소: ${data.address},
             우편번호: ${data.zonecode}
-        `)
+        `);
         setOpenPostcode(false);
-    },
-}
+        
+        
+    },  
+
+} 
+
+// console.log(address_test);
 
   const OnChangeId = (e) => {
     SetId(e.target.value);
@@ -119,110 +129,111 @@ const SignUpPage = () => {
   // }
 
   return (
-    <>
-      <Container>
-        <Caption>회원가입</Caption>
+     <>
+        <Container>
+           <Caption>회원가입</Caption>
 
-        <Table>
-          <tr>
-            <Title>아이디</Title>
-            <Sub>
-              <Input
-                maxLength={16}
-                name="loginId"
-                onChange={OnChangeId}
-                type="text"
-                placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"
-                spellcheck="false"
-                data-ms-editor="true"
-              />
-            </Sub>
-            <Sub>
-              <BtnOutline
-                onClick={idCheck}
-              >
-                <BtnTitle>중복확인</BtnTitle>
-              </BtnOutline>
-            </Sub>
-          </tr>
-          <tr>
-            <td></td>
-            <Sub>
-              <SubTxt>
-                • 6자 이상의 영문 혹은 영문과 숫자를 조합
-                <br /> • 아이디 중복확인
-              </SubTxt>
-            </Sub>
-          </tr>
-          <tr>
-            <Title>닉네임</Title>
-            <Sub>
-              <Input
-                name="nickname"
-                onChange={OnChangeNickname}
-                type="text"
-                placeholder="닉네임을 입력해주세요"
-                spellcheck="false"
-                data-ms-editor="true"
-              />
-            </Sub>
-            <td></td>
-          </tr>
+           <Table>
+              <tr>
+                 <Title>아이디</Title>
+                 <Sub>
+                    <Input
+                       maxLength={16}
+                       name="loginId"
+                       onChange={OnChangeId}
+                       type="text"
+                       placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"
+                       spellcheck="false"
+                       data-ms-editor="true"
+                    />
+                 </Sub>
+                 <Sub>
+                    <BtnOutline onClick={idCheck}>
+                       <BtnTitle>중복확인</BtnTitle>
+                    </BtnOutline>
+                 </Sub>
+              </tr>
+              <tr>
+                 <td></td>
+                 <Sub>
+                    <SubTxt>
+                       • 6자 이상의 영문 혹은 영문과 숫자를 조합
+                       <br /> • 아이디 중복확인
+                    </SubTxt>
+                 </Sub>
+              </tr>
+              <tr>
+                 <Title>닉네임</Title>
+                 <Sub>
+                    <Input
+                       name="nickname"
+                       onChange={OnChangeNickname}
+                       type="text"
+                       placeholder="닉네임을 입력해주세요"
+                       spellcheck="false"
+                       data-ms-editor="true"
+                    />
+                 </Sub>
+                 <td></td>
+              </tr>
 
-          <tr>
-            <Title>비밀번호</Title>
-            <Sub>
-              <Input
-                name="password"
-                onChange={OnChangePassword}
-                type="password"
-                placeholder="비밀번호를 입력해주세요"
-              />
-            </Sub>
-            <td></td>
-          </tr>
-          <tr>
-            <Title>비밀번호확인</Title>
-            <Sub>
-              <Input
-                onChange={OnChangePasswordCheck}
-                type="password"
-                placeholder="비밀번호를 한번 더 입력해주세요"
-              />
-            </Sub>
-            <td></td>
-          </tr>
-          <tr>
-            <Title>주소</Title>
-            <Sub>
-              <BtnAddress
-                onClick={handle.clickButton}
-              >
-                {openPostcode && 
-                <DaumPostcode
-                    onChange={OnChangeAddress}                    
-                    onComplete={handle.selectAddress}  // 값을 선택할 경우 실행되는 이벤트
-                    autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
-                    defaultQuery='판교역로 235' // 팝업을 열때 기본적으로 입력되는 검색어 
-                    style={{ position: 'relative', zIndex:10}}
-                    />}
-                <BtnTitle>주소 검색</BtnTitle>
-              </BtnAddress>
-            </Sub>
-            <td></td>
-          </tr>
+              <tr>
+                 <Title>비밀번호</Title>
+                 <Sub>
+                    <Input
+                       name="password"
+                       onChange={OnChangePassword}
+                       type="password"
+                       placeholder="비밀번호를 입력해주세요"
+                    />
+                 </Sub>
+                 <td></td>
+              </tr>
+              <tr>
+                 <Title>비밀번호확인</Title>
+                 <Sub>
+                    <Input
+                       onChange={OnChangePasswordCheck}
+                       type="password"
+                       placeholder="비밀번호를 한번 더 입력해주세요"
+                    />
+                 </Sub>
+                 <td></td>
+              </tr>
+              <tr>
+                 <Title>주소</Title>
+                 <Sub>
+                    <p>
+                       우편번호: {showZonecode} <br />
+                       주소: {showAddress}
+                    </p>
+                    <BtnAddress onClick={handle.clickButton}>
+                       {openPostcode && (
+                          <DaumPostcode
+                             onChange={OnChangeAddress}
+                             onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
+                             autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+                             defaultQuery="판교역로 235" // 팝업을 열때 기본적으로 입력되는 검색어
+                             style={{ position: 'relative', zIndex: 10 }}
+                          />
+                       )}
+                       <BtnTitle>주소 검색</BtnTitle>
+                    </BtnAddress>
+                 </Sub>
+                 <td></td>
+              </tr>
 
-          <tr>
-            <td></td>
-            <BtnContainer>
-              <BtnSignUp onClick={signUp}>
-                <BtnSignTxt>가입하기</BtnSignTxt>
-              </BtnSignUp>
-            </BtnContainer>
-          </tr>
-        </Table>
-      </Container>
-    </>
+              <tr>
+                 <td></td>
+                 <BtnContainer>
+                    <BtnSignUp onClick={signUp}>
+                       <BtnSignTxt>가입하기</BtnSignTxt>
+                    </BtnSignUp>
+                 </BtnContainer>
+              </tr>
+           </Table>
+        </Container>
+     </>
   );
 };
 const Container = styled.div`

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import {useNavigate} from 'react-router-dom'
-import axios from "axios";
+
 
 const Review = ({ productId, name }) => {
 
